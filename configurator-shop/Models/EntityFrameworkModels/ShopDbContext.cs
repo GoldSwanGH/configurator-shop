@@ -288,10 +288,6 @@ namespace configurator_shop.Models.EntityFrameworkModels
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PatronymicName)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
                 entity.Property(e => e.Tel)
                     .HasMaxLength(50)
                     .IsUnicode(false);
