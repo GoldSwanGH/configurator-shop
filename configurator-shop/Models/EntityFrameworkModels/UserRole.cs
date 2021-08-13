@@ -13,7 +13,7 @@ namespace configurator_shop.Models.EntityFrameworkModels
         }
 
         public int Id { get; set; }
-        public string Role { get; set; }
+        public string RoleName { get; set; }
 
         public virtual ICollection<User> Users { get; set; }
     }

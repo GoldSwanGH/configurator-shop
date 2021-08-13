@@ -20,6 +20,8 @@ namespace configurator_shop.Models.EntityFrameworkModels
         public string LastName { get; set; }
         public int RoleId { get; set; }
         public string Tel { get; set; }
+        public string Token { get; set; }
+        public bool EmailConfirmed { get; set; }
 
         public virtual UserRole Role { get; set; }
         public virtual ICollection<Configuration> Configurations { get; set; }

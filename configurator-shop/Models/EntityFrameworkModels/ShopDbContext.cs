@@ -292,6 +292,10 @@ namespace configurator_shop.Models.EntityFrameworkModels
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Token)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.RoleId)
@@ -301,10 +305,10 @@ namespace configurator_shop.Models.EntityFrameworkModels
 
             modelBuilder.Entity<UserRole>(entity =>
             {
-                entity.HasIndex(e => e.Role, "UK_UserRoles_Role")
+                entity.HasIndex(e => e.RoleName, "UK_UserRoles_Role")
                     .IsUnique();
 
-                entity.Property(e => e.Role)
+                entity.Property(e => e.RoleName)
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
