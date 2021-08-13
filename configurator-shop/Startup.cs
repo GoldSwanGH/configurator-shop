@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using configurator_shop.Interfaces;
 using configurator_shop.Models.EntityFrameworkModels;
+using configurator_shop.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,6 +37,9 @@ namespace configurator_shop
                     options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Authorization/Login");
                     options.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/AccessDenied");
                 });
+            
+            services.AddTransient<ISmtpEmailSender, GmailSmtpEmailSender>();
+            services.AddTransient<ITokenizer, Sha256Tokenizer>();
             
             services.AddControllersWithViews(options =>
                 options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
