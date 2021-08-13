@@ -1,0 +1,93 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Товар";
+    Layout = "_Layout";
+}
+
+<div class="row mt-3 align-items-center">
+    <img alt="Изображение компонента" src="~/static-pic/pc-parts/gpu.svg" class="col-12 col-md-4"/>
+    <div class="col-md-1"></div>
+    <div class="col-12 col-md-7">
+        <h1>Название детали</h1>
+        <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        <p class="mt-2 fs-4">Рейтинг: 5.0</p>
+        <div class="d-flex flex-wrap justify-content-between gap-5 mt-2 fs-4">
+            <div><button type="button" class="btn btn-lg btn-primary fw-bold">Купить</button></div>
+            <div class="w-50 d-flex justify-content-center align-items-center">
+                <span class="fs-1">199$</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-5 accordion" id="itemTabs">
+    <div class="col-12 col-md-3">
+        <div class="accordion-item active">
+            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                    Описание
+                </button>
+            </h2>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                    Характеристики
+                </button>
+            </h2>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                    Отзывы
+                </button>
+            </h2>
+        </div>
+    </div>
+    <div class="col-12 col-md-9 border-start border-2 border-dark ps-2">
+        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne" data-bs-parent="#itemTabs">
+            <div class="accordion-body">
+                <h3>Описание</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            </div>
+        </div>
+        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo" data-bs-parent="#itemTabs">
+            <div class="accordion-body">
+                <h3>Характеристики</h3>
+                <div class="d-flex flex-row flex-nowrap mt-3">
+                    <span class="fit" style="font-weight: 600;">Характеристика</span>
+                    <div class="border-1 border-dark mb-1 w-100" style="border-bottom-style: dotted;"></div>
+                    <span class="fit">Значение</span>
+                </div>
+            </div>
+        </div>
+        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree" data-bs-parent="#itemTabs">
+            <div class="accordion-body d-flex flex-column">
+                <h3>Отзывы</h3>
+                <div class="comment mt-3 mb-2">
+                    <div class="row align-items-center">
+                        <img alt="Изображение пользователя" src="~/static-pic/user.svg" class="col-3 col-md-1 col-lg-1 col-xl-1"/>
+                        <h5 class="col-6 col-md-9 col-lg-9 col-xl-9">Имя пользователя</h5>
+                        <span class="col-2 text-end">Оценка: 5.0</span>
+                    </div>
+                    <p class="mt-1">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+                </div>
+                <form class="pt-5 mt-auto">
+                    <textarea placeholder="Оставьте отзыв!" class="form-control custom-scroll" aria-label="Textarea" style="height: 200px; resize: none;"></textarea>
+                    <div class="d-flex justify-content-between flex-wrap align-items-center mt-2 px-3">
+                        <select class="form-select fit" aria-label="Default select example">
+                            <option selected>Поставьте оценку...</option>
+                            <option value="5">5</option>
+                            <option value="4">4</option>
+                            <option value="3">3</option>
+                            <option value="2">2</option>
+                            <option value="1">1</option>
+                        </select>
+                        <button type="submit" class="btn btn-primary fw-bold">Опубликовать</button>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</div>

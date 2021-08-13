@@ -1,8 +1,43 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Главная страница";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="row main-block mb-5 mb-lg-0 mb-xl-0">
+    <div class="col-md-8 col-lg-8 col-xl-8 d-flex flex-column justify-content-center">
+        <p class="fs-xxl mb-0 text-center text-lg-start text-xl-start">Все говорят нет</p>
+        <p class="ms-2 text-muted fs-2  text-center text-lg-start text-xl-start">а ты купи компьютер</p>
+    </div>
+    <div class="col-md-4 col-lg-4 col-xl-4 d-flex flex-column justify-content-center">
+        <img alt="Пикча компа" src="static-pic/home-page/desktop.svg"/>
+    </div>
+</div>
+<div class="row main-block flex-lg-row-reverse flex-xl-row-reverse">
+    <div class="col-md-7 col-lg-7 col-xl-7 d-flex flex-column justify-content-center">
+        <p class="fs-1 text-center text-lg-start text-xl-start">Лучшие комплектующие</p>
+        <p class="text-muted fs-3 text-wrap">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-4 col-lg-4 col-xl-4 d-flex flex-column justify-content-center">
+        <img alt="Пикча компа" src="static-pic/home-page/pc-parts-and-case.svg"/>
+    </div>
+</div>
+<div class="row mt-2 mt-md-0 mt-lg-0 mt-xl-0 mb-5 mb-lg-0 mb-xl-0 justify-content-center">
+    <div class="col-md-4 col-lg-3 col-xl-3">
+        <a class="btn btn-primary btn-lg fw-bold w-100" asp-area="" asp-controller="Shop" asp-action="Categories">Товары</a>
+    </div>
+</div>
+<div class="row main-block mb-5 mb-lg-0 mb-xl-0">
+    <div class="col-md-7 col-lg-7 col-xl-7 d-flex flex-column justify-content-center">
+        <p class="fs-1  text-center text-lg-start text-xl-start">Конфигуратор сборок</p>
+        <p class="text-muted fs-3 text-wrap">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-4 col-lg-4 col-xl-4 d-flex flex-column justify-content-center">
+        <img alt="Пикча компа" src="static-pic/home-page/configurator-promo.svg"/>
+    </div>
+</div>
+<div class="row mb-5 mb-lg-0 mb-xl-0 justify-content-center">
+    <div class="col-md-4 col-lg-3 col-xl-3">
+        <a class="btn btn-primary btn-lg mb-5 fw-bold w-100" asp-area="" asp-controller="Configurator" asp-action="Index">Конфигуратор</a>
+    </div>
 </div>

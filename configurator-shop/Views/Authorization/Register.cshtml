@@ -1,0 +1,47 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Регистрация";
+    Layout = "_Layout";
+}
+
+<h1 class="text-center text-wrap my-5">Регистрация</h1>
+
+<div class="container">
+    <form asp-controller="Authorization" asp-action="Register" method="post">
+        <div class="row">
+            <div class="col-md-2 col-lg-3"></div>
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="mb-3">
+                    <label for="emailForm" class="form-label">E-mail</label>
+                    <input type="email" class="form-control rounded-pill" id="emailForm" placeholder="name@example.com">
+                </div>
+                <div class="mb-3">
+                    <label for="passwordForm" class="form-label">Пароль</label>
+                    <input type="password" class="form-control rounded-pill" id="passwordForm">
+                </div>
+                <div class="mb-3">
+                    <label for="repasswordForm" class="form-label">Повторите пароль</label>
+                    <input type="password" class="form-control rounded-pill" id="repasswordForm">
+                </div>
+                <div class="mb-3">
+                    <label for="nameForm" class="form-label">Имя</label>
+                    <input type="text" class="form-control rounded-pill" id="nameForm" placeholder="Ваше имя">
+                </div>
+                <div class="mb-3">
+                    <label for="surnameForm" class="form-label">Фамилия</label>
+                    <input type="text" class="form-control rounded-pill" id="surnameForm" placeholder="Ваша фамилия">
+                </div>
+                <div class="mb-3">
+                    <label for="telForm" class="form-label">Телефон</label>
+                    <input type="tel" class="form-control rounded-pill" id="telForm" placeholder="+7 (900) 999-22-11">
+                </div>
+                <div class="d-flex justify-content-center align-items-center mb-5">
+                    <button type="submit" class="btn btn-primary btn-lg mt-3">Регистрация</button>
+                </div>
+            </div>
+            <div class="col-md-2 col-lg-3"></div>
+        </div>
+    </form>
+
+</div>

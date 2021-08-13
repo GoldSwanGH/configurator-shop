@@ -1,0 +1,18 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Конфигуратор";
+    Layout = "_Layout";
+}
+
+<h1 class="text-center text-wrap my-5">Конфигуратор</h1>
+
+<div class="row">
+    <a class="btn btn-primary btn-lg fw-bold mb-4 text-center text-wrap col-10 col-md-6 mx-auto" asp-area="" asp-controller="Configurator" asp-action="Configurations">Ваши конфигурации</a>
+</div>
+<div class="row">
+    <a class="btn btn-primary btn-lg fw-bold mb-4 text-center text-wrap col-10 col-md-6 mx-auto" asp-area="" asp-controller="Configurator" asp-action="ChangeConfiguration">Создать новую конфигурацию</a>
+</div>
+<div class="row">
+    <a class="btn btn-primary btn-lg fw-bold mb-4 text-center text-wrap col-10 col-md-6 mx-auto" asp-area="" asp-controller="Configurator" asp-action="Configurations">Другие конфигурации</a>
+</div>
