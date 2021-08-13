@@ -1,0 +1,72 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Профиль";
+    Layout = "_Layout";
+}
+
+<h1 class="text-center text-wrap mt-3">Профиль</h1>
+
+<div class="row mt-5 accordion" id="profileTabs">
+    <div class="col-12 col-md-3 d-flex flex-column">
+        <div class="accordion-item active">
+            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                    Данные
+                </button>
+            </h2>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                    Заказы
+                </button>
+            </h2>
+        </div>
+        <a href="#" class="btn btn-outline-primary fit mx-auto mt-3">Мои конфигурации</a>
+    </div>
+    <div class="col-12 col-md-9 border-start border-2 border-dark ps-0 ps-sm-2 mx-auto mx-sm-0">
+        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne" data-bs-parent="#profileTabs">
+            <div class="accordion-body d-flex flex-column">
+                <h3>Ваши данные</h3>
+                <form class="row gap-2 gap-md-0">
+                    <div class="col-md-4">
+                        <input type="text" placeholder="Имя" class="form-control rounded-pill profileInp" disabled/>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" placeholder="Фамилия" class="form-control rounded-pill profileInp" disabled/>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="tel" placeholder="Телефон" class="form-control rounded-pill profileInp" disabled/>
+                    </div>
+                </form>
+                <button id="changeProfile" type="button" class="btn btn-outline-primary mx-auto mt-3">Изменить</button>
+                <button id="saveProfile" type="submit" class="btn btn-primary mx-auto mt-3" hidden>Сохранить</button>
+                <div class="row text-center px-3 mt-3">
+                    <p class="fs-5 fw-semibold">Смена пароля происходит через отправку письма на Вашу почту.</p>
+                </div>
+                <button type="submit" class="btn btn-outline-primary fit text-wrap mx-auto">Изменить пароль</button>
+            </div>
+        </div>
+        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo" data-bs-parent="#profileTabs">
+            <div class="accordion-body">
+                <table class="table-borderless w-100 text-center">
+                    <tr class="border-bottom border-dark">
+                        <th class="fit text-nowrap px-sm-2">Номер заказа</th>
+                        <th class="w-75 px-sm-2">Описание</th>
+                        <th class="fit text-nowrap px-sm-2">Кол-во</th>
+                        <th class="fit text-nowrap px-sm-2">Цена</th>
+                    </tr>
+                    <tr class="border-primary clickable-row" style="border-left: 5px solid;" data-href="#">
+                        <td class="fw-semibold py-2">192658</td>
+                        <td class="overflow-ellipsis">
+                            Компьютерная деталь 1, Компьютерная деталь 2, Компьютерная деталь 3, Компьютерная деталь 4
+                        </td>
+                        <td>4</td>
+                        <td>1236$</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

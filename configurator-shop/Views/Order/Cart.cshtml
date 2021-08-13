@@ -1,0 +1,54 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Корзина";
+    Layout = "_Layout";
+}
+
+@*<h1 class="text-center text-wrap mt-5">Ваша корзина пуста</h1>
+
+<h3 class="text-muted text-center text-wrap">Исправим?</h3>*@
+
+<h1 class="text-center text-wrap mt-5">Ваша корзина</h1>
+
+<div class="container mt-3">
+    <div class="row h-100 mb-5">
+        <div class="col-12 col-md-9 mb-5 mb-md-0 border-end border-2 border-dark">
+            <div class="overflow-scroll custom-scroll" style="overflow-x: hidden !important; min-height: 10vh; max-height: 75vh;">
+                <div class="row flex-lg-nowrap product mb-3 ms-2 border-bottom border-1 border-dark">
+                    <img alt="Изображение товара" src="~/static-pic/pc-parts/motherboard.svg" class="col-2 col-lg-3 my-2 mx-auto mx-lg-0 mx-xl-0"/>
+                    <div class="col-10 col-lg-9 d-flex flex-column justify-content-between">
+                        <div class="row mb-2">
+                            <div class="col-10">
+                                Компьютерная деталь, довольно длинное описание детали с техническими характеристиками.
+                            </div>
+                            <div class="col-2 text-end">
+                                <span class="fs-3">199$</span>
+                            </div>
+                        </div>
+                        <div class="row mb-2 justify-content-between flex-wrap">
+                            <div class="fit d-flex">
+                                <span class="mt-auto">Рейтинг: 5.0</span>
+                            </div>
+                            <div class="fit d-flex">
+                                <span class="mt-auto">Количество: 1</span>
+                            </div>
+                            <div class="col-lg-2 col-xl-2 col-md-2 d-flex flex-row">
+                                <a class="btn btn-primary btn-sm w-100 fit align-self-end" asp-area="" asp-controller="Shop" asp-action="Product">Детали</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3 gx-0">
+            <div class="my-5 d-flex flex-column justify-content-center align-items-center">
+                <h3 class="text-center text-wrap">Итого:   1236$</h3>
+                <div class="w-75">
+                    <button class="btn btn-outline-primary mt-3 w-100">Очистить</button>
+                    <a class="btn btn-primary fw-bold mt-3 w-100" asp-controller="Order" asp-action="YourOrder">Заказать</a> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
