@@ -23,5 +23,7 @@ namespace configurator_shop.Models.EntityFrameworkModels
         public int? Tdp { get; set; }
         public int? Packaging { get; set; }
         public int? CoolerHeight { get; set; }
+
+        public virtual Product Product { get; set; }
     }
 }

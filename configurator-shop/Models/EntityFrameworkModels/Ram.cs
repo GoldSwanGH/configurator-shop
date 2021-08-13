@@ -14,5 +14,7 @@ namespace configurator_shop.Models.EntityFrameworkModels
         public int? Modules { get; set; }
         public int? Speed { get; set; }
         public int? Technology { get; set; }
+
+        public virtual Product Product { get; set; }
     }
 }

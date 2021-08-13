@@ -15,5 +15,7 @@ namespace configurator_shop.Models.EntityFrameworkModels
         public int? SpindleSpeed { get; set; }
         public int? Capacity { get; set; }
         public int? Cache { get; set; }
+
+        public virtual Product Product { get; set; }
     }
 }

@@ -35,5 +35,7 @@ namespace configurator_shop.Models.EntityFrameworkModels
         public int? WiFi { get; set; }
         public int? Sli { get; set; }
         public int? Crossfire { get; set; }
+
+        public virtual Product Product { get; set; }
     }
 }

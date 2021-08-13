@@ -18,5 +18,7 @@ namespace configurator_shop.Models.EntityFrameworkModels
         public int? Pciex8 { get; set; }
         public int? Pciex6 { get; set; }
         public int? Plus { get; set; }
+
+        public virtual Product Product { get; set; }
     }
 }

@@ -19,5 +19,7 @@ namespace configurator_shop.Models.EntityFrameworkModels
         public int? Speed { get; set; }
         public int? Noise { get; set; }
         public int? Weight { get; set; }
+
+        public virtual Product Product { get; set; }
     }
 }

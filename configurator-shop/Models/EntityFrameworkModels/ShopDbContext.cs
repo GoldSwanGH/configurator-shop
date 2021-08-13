@@ -50,16 +50,24 @@ namespace configurator_shop.Models.EntityFrameworkModels
 
             modelBuilder.Entity<Case>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.Property(e => e.ESata).HasColumnName("eSATA");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.Cases)
+                    .HasForeignKey(d => d.ProductId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Cases_Products");
             });
 
             modelBuilder.Entity<CaseFan>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("CaseFan");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.CaseFans)
+                    .HasForeignKey(d => d.ProductId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_CaseFan_Products");
             });
 
             modelBuilder.Entity<Configuration>(entity =>
@@ -98,28 +106,34 @@ namespace configurator_shop.Models.EntityFrameworkModels
 
             modelBuilder.Entity<Cpu>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("CPU");
 
                 entity.Property(e => e.Gpu).HasColumnName("GPU");
 
                 entity.Property(e => e.Tdp).HasColumnName("TDP");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.Cpus)
+                    .HasForeignKey(d => d.ProductId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_CPU_Products");
             });
 
             modelBuilder.Entity<CpuCooler>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("CpuCooler");
 
                 entity.Property(e => e.Tdp).HasColumnName("TDP");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.CpuCoolers)
+                    .HasForeignKey(d => d.ProductId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_CpuCooler_Products");
             });
 
             modelBuilder.Entity<Gpu>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("GPU");
 
                 entity.Property(e => e.Gpu1).HasColumnName("GPU");
@@ -127,19 +141,27 @@ namespace configurator_shop.Models.EntityFrameworkModels
                 entity.Property(e => e.Hdmi).HasColumnName("HDMI");
 
                 entity.Property(e => e.Vga).HasColumnName("VGA");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.Gpus)
+                    .HasForeignKey(d => d.ProductId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_GPU_Products");
             });
 
             modelBuilder.Entity<Hdd>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("HDD");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.Hdds)
+                    .HasForeignKey(d => d.ProductId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_HDD_Products");
             });
 
             modelBuilder.Entity<Motherboard>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.Property(e => e.Pci).HasColumnName("PCI");
 
                 entity.Property(e => e.Pciex1).HasColumnName("PCIex1");
@@ -159,6 +181,12 @@ namespace configurator_shop.Models.EntityFrameworkModels
                 entity.Property(e => e.Sata3raid).HasColumnName("SATA3RAID");
 
                 entity.Property(e => e.Sli).HasColumnName("SLI");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.Motherboards)
+                    .HasForeignKey(d => d.ProductId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Motherboards_Products");
             });
 
             modelBuilder.Entity<OrderCart>(entity =>
@@ -235,8 +263,6 @@ namespace configurator_shop.Models.EntityFrameworkModels
 
             modelBuilder.Entity<Psu>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("PSU");
 
                 entity.Property(e => e.Pciex6).HasColumnName("PCIex6");
@@ -246,22 +272,36 @@ namespace configurator_shop.Models.EntityFrameworkModels
                 entity.Property(e => e.Pfc).HasColumnName("PFC");
 
                 entity.Property(e => e.Sata).HasColumnName("SATA");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.Psus)
+                    .HasForeignKey(d => d.ProductId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_PSU_Products");
             });
 
             modelBuilder.Entity<Ram>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("RAM");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.Rams)
+                    .HasForeignKey(d => d.ProductId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_RAM_Products");
             });
 
             modelBuilder.Entity<Ssd>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("SSD");
 
                 entity.Property(e => e.Nvme).HasColumnName("NVMe");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.Ssds)
+                    .HasForeignKey(d => d.ProductId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_SSD_Products");
             });
 
             modelBuilder.Entity<User>(entity =>
@@ -305,7 +345,7 @@ namespace configurator_shop.Models.EntityFrameworkModels
 
             modelBuilder.Entity<UserRole>(entity =>
             {
-                entity.HasIndex(e => e.RoleName, "UK_UserRoles_Role")
+                entity.HasIndex(e => e.RoleName, "UK_UserRoles_RoleName")
                     .IsUnique();
 
                 entity.Property(e => e.RoleName)

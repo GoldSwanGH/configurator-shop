@@ -25,5 +25,7 @@ namespace configurator_shop.Models.EntityFrameworkModels
         public int? CoolingType { get; set; }
         public int? Powering { get; set; }
         public int? RecommendedPower { get; set; }
+
+        public virtual Product Product { get; set; }
     }
 }

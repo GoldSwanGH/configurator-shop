@@ -17,6 +17,8 @@ namespace configurator_shop.Models.EntityFrameworkModels
         public int? Nvme { get; set; }
         public int? ReadSpeed { get; set; }
         public int? WriteSpeed { get; set; }
-        public int? Encryption { get; set; }
+        public int? DiskEncryption { get; set; }
+
+        public virtual Product Product { get; set; }
     }
 }

@@ -42,5 +42,7 @@ namespace configurator_shop.Models.EntityFrameworkModels
         public int? PsuInstalled { get; set; }
         public int? PsuPower { get; set; }
         public int? Color { get; set; }
+
+        public virtual Product Product { get; set; }
     }
 }
