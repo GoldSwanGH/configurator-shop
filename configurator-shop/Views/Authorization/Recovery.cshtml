@@ -1,4 +1,4 @@
-﻿@model dynamic
+﻿@model configurator_shop.Models.ViewModels.RecoveryViewModel
 
 @{
     ViewBag.Title = "Восстановление";
@@ -7,4 +7,30 @@
 
 <h1 class="text-center text-wrap mt-5">Восстановление</h1>
 
-<h3 class="text-muted text-center text-wrap">На вашу почту было выслано письмо с дальнейшими указаниями</h3>
+@if ((bool) ViewData["Post"])
+{
+    <h3 class="text-muted text-center text-wrap">На вашу почту было выслано письмо с дальнейшими указаниями</h3>
+}
+else
+{
+    <h3 class="text-muted text-center text-wrap">Введите Email вашего аккаунта</h3>
+    @using (Html.BeginForm("Recovery", "Authorization", FormMethod.Post))
+    {
+        <div class="row">
+        <div class="col-md-2 col-lg-3"></div>
+        <div class="col-12 col-md-8 col-lg-6">
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" class="form-control rounded-pill" placeholder="user@@example.org">
+                <div class="invalid-feedback visible">
+                    @Html.ValidationMessageFor(m => m.Email)
+                </div>
+            </div>
+            <div class="d-flex justify-content-center align-items-center mb-5">
+                <button type="submit" class="btn btn-primary btn-lg mt-3">Восстановить</button>
+            </div>
+        </div>
+        <div class="col-md-2 col-lg-3"></div>
+        </div>
+    }
+}
