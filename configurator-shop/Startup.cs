@@ -40,6 +40,8 @@ namespace configurator_shop
             
             services.AddTransient<ISmtpEmailSender, GmailSmtpEmailSender>();
             services.AddTransient<ITokenizer, Sha256Tokenizer>();
+            services.AddTransient<IResizer, ImageResizer>();
+            services.AddTransient<ICompresser, JpegCompresser>();
             
             services.AddControllersWithViews(options =>
                 options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
