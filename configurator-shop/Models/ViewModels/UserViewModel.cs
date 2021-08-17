@@ -7,6 +7,7 @@ namespace configurator_shop.Models.ViewModels
     public class UserViewModel
     {
         public int? Id { get; set; }
+        
         [DataType(DataType.Text)]
         [DisplayName("Имя")]
         public virtual string FirstName { get; set; }
@@ -22,6 +23,8 @@ namespace configurator_shop.Models.ViewModels
         [Phone(ErrorMessage = "Номер телефона введен неправильно.")]
         [DisplayName("Телефон")]
         public virtual string Tel { get; set; }
+        
+        public bool CustomImage { get; set; }
 
         public static UserViewModel ToUserViewModel(User user)
         {
@@ -31,7 +34,8 @@ namespace configurator_shop.Models.ViewModels
                 Email = user.Email,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                Tel = user.Tel
+                Tel = user.Tel,
+                CustomImage = user.CustomImage
             };
             return model;
         }
