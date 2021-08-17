@@ -1,5 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.IO;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
+using System.Net.Mime;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using configurator_shop.Filters;
@@ -27,8 +31,10 @@ namespace configurator_shop.Controllers
         private readonly ITokenizer _tokenizer;
         private readonly IConfiguration _configuration;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly ICompresser _compresser;
+        private readonly IResizer _resizer;
         
-        public AuthorizationController(ILogger<AuthorizationController> logger, ShopDbContext dbContext, ISmtpEmailSender emailSender, ITokenizer tokenizer, IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
+        public AuthorizationController(ILogger<AuthorizationController> logger, ShopDbContext dbContext, ISmtpEmailSender emailSender, ITokenizer tokenizer, IConfiguration configuration, IWebHostEnvironment webHostEnvironment, ICompresser compresser, IResizer resizer)
         {
             _logger = logger;
             _dbContext = dbContext;
@@ -36,6 +42,8 @@ namespace configurator_shop.Controllers
             _tokenizer = tokenizer;
             _configuration = configuration;
             _webHostEnvironment = webHostEnvironment;
+            _compresser = compresser;
+            _resizer = resizer;
         }
 
         [HttpGet]
@@ -293,6 +301,85 @@ namespace configurator_shop.Controllers
             return RedirectToAction("Index", "Home");
         }
         
+        [Authorize]
+        public IActionResult Profile()
+        {
+            User user;
+            
+            user = _dbContext.Users.FirstOrDefault(u => u.Email == User.Identity.Name);
+            
+            return View(ProfileViewModel.ToProfileViewModel(user));
+        }
+        
+        [HttpPost]
+        [Authorize]
+        public IActionResult Profile(ProfileViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = _dbContext.Users.FirstOrDefault(u => u.Email == User.Identity.Name);
+                if (user != null)
+                {
+                    if (model.FirstName != user.FirstName)
+                    {
+                        user.FirstName = model.FirstName;
+                    }
+                    if (model.LastName != user.LastName)
+                    {
+                        user.LastName = model.LastName;
+                    }
+                    if (model.Tel != user.Tel)
+                    {
+                        user.Tel = model.Tel;
+                    }
+
+                    if (model.Image != null)
+                    {
+                        string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images", "users");
+                        string filePath = Path.Combine(uploadsFolder, user.Id + ".jpg");
+
+                        if (model.Image == null || model.Image.Length == 0 /*|| model.Image.ContentType == ".jpeg" Проверять тип файла? */)
+                        {
+                            ModelState.AddModelError("", "Ошибка изображения");
+                            return View();
+                        }
+                        
+                        if (user.CustomImage)
+                        {
+                            System.IO.File.Delete(filePath);
+                        }
+                        else
+                        {
+                            user.CustomImage = true;
+                        }
+
+                        using (var memoryStream = new MemoryStream())
+                        {
+                            model.Image.CopyTo(memoryStream);
+                            using (var img = Image.FromStream(memoryStream))
+                            {
+                                Image readyImage = _resizer.Resize(img, 200, 200);
+                                readyImage = _compresser.Compress(readyImage, 50L);
+                                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                                {
+                                    readyImage.Save(fileStream, ImageFormat.Jpeg);
+                                }
+                            }
+                        }
+                    }
+
+                    _dbContext.SaveChanges();
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Пользователь не найден");
+                    return View();
+                }
+            }
+
+            return View();
+        }
+        
         private async Task Authenticate(User user)
         {
             // создаем claims
@@ -306,11 +393,6 @@ namespace configurator_shop.Controllers
                 ClaimsIdentity.DefaultRoleClaimType);
             // установка аутентификационных куки
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
-        }
-
-        public IActionResult Profile()
-        {
-            return View();
         }
     }
 }
