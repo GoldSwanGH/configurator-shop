@@ -18,6 +18,7 @@
       <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.6" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" />
       <PackageReference Include="MimeKit" Version="2.14.0" />
+      <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
     </ItemGroup>
     
     <ItemGroup>
@@ -26,5 +27,6 @@
     
     <ItemGroup>
       <Folder Include="Models\EntityFrameworkModels" />
+      <Folder Include="wwwroot\images\products" />
     </ItemGroup>
 </Project>
