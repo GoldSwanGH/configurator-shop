@@ -22,6 +22,7 @@ namespace configurator_shop.Models.EntityFrameworkModels
         public string Tel { get; set; }
         public string Token { get; set; }
         public bool EmailConfirmed { get; set; }
+        public bool CustomImage { get; set; }
 
         public virtual UserRole Role { get; set; }
         public virtual ICollection<Configuration> Configurations { get; set; }

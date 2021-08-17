@@ -193,6 +193,8 @@ namespace configurator_shop.Models.EntityFrameworkModels
             {
                 entity.ToTable("OrderCart");
 
+                entity.Property(e => e.Amount).HasDefaultValueSql("((1))");
+
                 entity.HasOne(d => d.Order)
                     .WithMany(p => p.OrderCarts)
                     .HasForeignKey(d => d.OrderId)
@@ -325,7 +327,7 @@ namespace configurator_shop.Models.EntityFrameworkModels
 
                 entity.Property(e => e.Password)
                     .IsRequired()
-                    .HasMaxLength(50)
+                    .HasMaxLength(100)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Tel)
