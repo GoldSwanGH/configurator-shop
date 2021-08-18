@@ -38,9 +38,11 @@
         <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne" data-bs-parent="#profileTabs">
             <div class="accordion-body d-flex flex-column">
                 <h3>Ваши данные</h3>
-                @using (Html.BeginForm("Profile", "Authorization", FormMethod.Post))
+                @using (Html.BeginForm("Profile", "Authorization", FormMethod.Post, new {id="infoForm"}))
                 {
+                    @Html.HiddenFor(m => m.Email);
                     <div class="row">
+                        <div class="validation invalid-feedback visible col-12 mb-3" asp-validation-summary="ModelOnly"></div>
                         <div class="col-12 col-md-4 mb-3">
                             <label asp-for="FirstName" class="form-label"></label>
                             <input asp-for="FirstName" class="form-control rounded-pill profileInp" disabled/>
@@ -71,7 +73,7 @@
                         </div>
                         <div class="d-flex flex-column mb-3">
                             <button id="changeProfile" type="button" class="btn btn-outline-primary mx-auto mt-3">Изменить</button>
-                            <button id="saveProfile" type="submit" class="btn btn-primary mx-auto mt-3" hidden>Сохранить</button>
+                            <button id="saveProfile" form="infoForm" type="submit" class="btn btn-primary mx-auto mt-3" hidden>Сохранить</button>
                         </div>
                     </div>
                 }
