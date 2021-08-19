@@ -52,9 +52,5 @@ jQuery(document).ready(function($) {
    $('#changeProfile').click(function() {
         toggleState();
    });
-
-    $('#saveProfile').click(function() {
-        toggleState();
-    });
 });
 
