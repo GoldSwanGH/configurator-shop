@@ -25,7 +25,35 @@ namespace configurator_shop.Models.ViewModels
         public virtual string Tel { get; set; }
         
         public bool CustomImage { get; set; }
+        
+        public string ImagePath { get; set; }
+        
+        /*
+        public UserViewModel()
+        {
+            
+        }
+        
+        public UserViewModel(User user)
+        {
+            Id = user.Id;
+            Email = user.Email;
+            FirstName = user.FirstName;
+            LastName = user.LastName;
+            Tel = user.Tel;
+            CustomImage = user.CustomImage;
 
+            if (CustomImage)
+            {
+                ImagePath = @"~/images/users/" + Id + ".jpg";
+            }
+            else
+            {
+                ImagePath = @"~/images/users/user.svg";
+            }
+        }
+        */
+        
         public static UserViewModel ToUserViewModel(User user)
         {
             var model = new UserViewModel
@@ -37,6 +65,16 @@ namespace configurator_shop.Models.ViewModels
                 Tel = user.Tel,
                 CustomImage = user.CustomImage
             };
+
+            if (model.CustomImage)
+            {
+                model.ImagePath = @"~/images/users/" + model.Id + ".jpg";
+            }
+            else
+            {
+                model.ImagePath = @"~/images/users/user.svg";
+            }
+            
             return model;
         }
     }

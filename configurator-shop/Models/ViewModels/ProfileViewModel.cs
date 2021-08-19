@@ -7,10 +7,10 @@ namespace configurator_shop.Models.ViewModels
 {
     public class ProfileViewModel : UserViewModel
     {
-        [DisplayName("Изображение профиля")]
+        [DisplayName("Сменить изображение профиля")]
         [BindProperty]
         public IFormFile Image { get; set; }
-        
+
         public static ProfileViewModel ToProfileViewModel(User user)
         {
             var model = new ProfileViewModel()
@@ -22,6 +22,16 @@ namespace configurator_shop.Models.ViewModels
                 Tel = user.Tel,
                 CustomImage = user.CustomImage
             };
+            
+            if (model.CustomImage)
+            {
+                model.ImagePath = @"~/images/users/" + model.Id + ".jpg";
+            }
+            else
+            {
+                model.ImagePath = @"~/images/users/user.svg";
+            }
+
             return model;
         }
     }
