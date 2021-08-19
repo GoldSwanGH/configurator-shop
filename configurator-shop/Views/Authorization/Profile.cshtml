@@ -3,15 +3,6 @@
 @{
     ViewBag.Title = "Профиль";
     Layout = "_Layout";
-    string imagePath = "";
-    if (Model.CustomImage)
-    {
-        imagePath = @"~/images/users/" + Model.Id + ".jpg";
-    }
-    else
-    {
-        imagePath = @"~/images/users/user.svg";
-    }
 }
 
 <h1 class="text-center text-wrap mt-3">Профиль</h1>
@@ -33,39 +24,46 @@
             </h2>
         </div>
         <a href="#" class="btn btn-outline-primary fit mx-auto mt-3">Мои конфигурации</a>
+        @if (User.IsInRole("Admin"))
+        {
+            <a class="btn btn-outline-primary fit mx-auto mt-3" asp-controller="Shop" asp-action="AddProductChooseCategory">Добавить товар</a>
+        }
     </div>
     <div class="col-12 col-md-9 border-start border-2 border-dark ps-0 ps-sm-2 mx-auto mx-sm-0">
         <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne" data-bs-parent="#profileTabs">
             <div class="accordion-body d-flex flex-column">
                 <h3>Ваши данные</h3>
-                @using (Html.BeginForm("Profile", "Authorization", FormMethod.Post, new {id="infoForm"}))
-                {
-                    @Html.HiddenFor(m => m.Email);
+                <form asp-controller="Authorization" asp-action="Profile" method="post" enctype="multipart/form-data" id="infoForm">
+                    @Html.HiddenFor(m => m.Email)
+                    @Html.HiddenFor(m => m.CustomImage)
+                    @Html.HiddenFor(m => m.ImagePath)
+                    @Html.HiddenFor(m => m.Id)
                     <div class="row">
                         <div class="validation invalid-feedback visible col-12 mb-3" asp-validation-summary="ModelOnly"></div>
                         <div class="col-12 col-md-4 mb-3">
                             <label asp-for="FirstName" class="form-label"></label>
                             <input asp-for="FirstName" class="form-control rounded-pill profileInp" disabled/>
-                            <div class="invalid-feedback visible">
+                            <div class="fs-sm text-danger">
                                 @Html.ValidationMessageFor(m => m.FirstName)
                             </div>
                         </div>
                         <div class="col-12 col-md-4 mb-3">
                             <label asp-for="LastName" class="form-label"></label>
                             <input asp-for="LastName" placeholder="Фамилия" class="form-control rounded-pill profileInp" disabled/>
-                            <div class="invalid-feedback visible">
+                            <div class="fs-sm text-danger">
                                 @Html.ValidationMessageFor(m => m.LastName)
                             </div>
                         </div>
                         <div class="col-12 col-md-4 mb-3">
                             <label asp-for="Tel" class="form-label"></label>
                             <input asp-for="Tel" placeholder="Телефон" class="form-control rounded-pill profileInp" disabled/>
-                            <div class="invalid-feedback visible">
+                            <div class="fs-sm text-danger">
                                 @Html.ValidationMessageFor(m => m.Tel)
                             </div>
                         </div>
                         <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-center align-items-center mb-3">
-                            <img src="@imagePath" asp-append-version="true" alt="Your profile icon" style="height: 125px; width: 125px;" class="mt-3"/>
+                            <label for="profilePic" class="form-label">Изображение профиля</label>
+                            <img src="@Model.ImagePath" asp-append-version="true" id="profilePic" alt="Your profile icon" style="height: 125px; width: 125px;"/>
                         </div>
                         <div class="col-12 col-lg-6 mb-3">
                             <label asp-for="Image" class="form-label"></label>
@@ -73,15 +71,17 @@
                         </div>
                         <div class="d-flex flex-column mb-3">
                             <button id="changeProfile" type="button" class="btn btn-outline-primary mx-auto mt-3">Изменить</button>
-                            <button id="saveProfile" form="infoForm" type="submit" class="btn btn-primary mx-auto mt-3" hidden>Сохранить</button>
+                            <input id="saveProfile" form="infoForm" type="submit" class="btn btn-primary mx-auto mt-3" value="Сохранить" hidden/>
                         </div>
                     </div>
-                }
+                </form>
                 
-                <div class="row text-center px-3 mt-3">
-                    <p class="fs-5 fw-semibold">Смена пароля происходит через отправку письма на Вашу почту.</p>
-                </div>
-                <a class="btn btn-outline-primary fit text-wrap mx-auto" asp-controller="Authorization" asp-action="Recovery">Изменить пароль</a>
+                <form asp-controller="Authorization" asp-action="Recovery" method="post">
+                    <div class="row text-center px-3 mt-3">
+                        <p class="fs-5 fw-semibold">Смена пароля происходит через отправку письма на Вашу почту.</p>
+                    </div>
+                    <input type="submit" class="btn btn-outline-primary fit text-wrap mx-auto" value="Изменить пароль">
+                </form>
             </div>
         </div>
         <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo" data-bs-parent="#profileTabs">
