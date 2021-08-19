@@ -9,18 +9,18 @@ namespace configurator_shop.Models.EntityFrameworkModels
     {
         public Product()
         {
-            CaseFans = new HashSet<CaseFan>();
-            Cases = new HashSet<Case>();
+            CategoryCaseFans = new HashSet<CategoryCaseFan>();
+            CategoryCases = new HashSet<CategoryCase>();
+            CategoryCpuCoolers = new HashSet<CategoryCpuCooler>();
+            CategoryCpus = new HashSet<CategoryCpu>();
+            CategoryGpus = new HashSet<CategoryGpu>();
+            CategoryHdds = new HashSet<CategoryHdd>();
+            CategoryMotherboards = new HashSet<CategoryMotherboard>();
+            CategoryPsus = new HashSet<CategoryPsu>();
+            CategoryRams = new HashSet<CategoryRam>();
+            CategorySsds = new HashSet<CategorySsd>();
             ConfigurationLists = new HashSet<ConfigurationList>();
-            CpuCoolers = new HashSet<CpuCooler>();
-            Cpus = new HashSet<Cpu>();
-            Gpus = new HashSet<Gpu>();
-            Hdds = new HashSet<Hdd>();
-            Motherboards = new HashSet<Motherboard>();
             OrderCarts = new HashSet<OrderCart>();
-            Psus = new HashSet<Psu>();
-            Rams = new HashSet<Ram>();
-            Ssds = new HashSet<Ssd>();
         }
 
         public int Id { get; set; }
@@ -33,17 +33,17 @@ namespace configurator_shop.Models.EntityFrameworkModels
         public string Description { get; set; }
 
         public virtual ProductType Type { get; set; }
-        public virtual ICollection<CaseFan> CaseFans { get; set; }
-        public virtual ICollection<Case> Cases { get; set; }
+        public virtual ICollection<CategoryCaseFan> CategoryCaseFans { get; set; }
+        public virtual ICollection<CategoryCase> CategoryCases { get; set; }
+        public virtual ICollection<CategoryCpuCooler> CategoryCpuCoolers { get; set; }
+        public virtual ICollection<CategoryCpu> CategoryCpus { get; set; }
+        public virtual ICollection<CategoryGpu> CategoryGpus { get; set; }
+        public virtual ICollection<CategoryHdd> CategoryHdds { get; set; }
+        public virtual ICollection<CategoryMotherboard> CategoryMotherboards { get; set; }
+        public virtual ICollection<CategoryPsu> CategoryPsus { get; set; }
+        public virtual ICollection<CategoryRam> CategoryRams { get; set; }
+        public virtual ICollection<CategorySsd> CategorySsds { get; set; }
         public virtual ICollection<ConfigurationList> ConfigurationLists { get; set; }
-        public virtual ICollection<CpuCooler> CpuCoolers { get; set; }
-        public virtual ICollection<Cpu> Cpus { get; set; }
-        public virtual ICollection<Gpu> Gpus { get; set; }
-        public virtual ICollection<Hdd> Hdds { get; set; }
-        public virtual ICollection<Motherboard> Motherboards { get; set; }
         public virtual ICollection<OrderCart> OrderCarts { get; set; }
-        public virtual ICollection<Psu> Psus { get; set; }
-        public virtual ICollection<Ram> Rams { get; set; }
-        public virtual ICollection<Ssd> Ssds { get; set; }
     }
 }
