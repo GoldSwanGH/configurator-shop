@@ -22,7 +22,7 @@ else
             <div class="mb-3">
                 <label asp-for="Email" class="form-label"></label>
                 <input asp-for="Email" class="form-control rounded-pill" placeholder="user@@example.org">
-                <div class="invalid-feedback visible">
+                <div class="fs-sm text-danger">
                     @Html.ValidationMessageFor(m => m.Email)
                 </div>
             </div>
