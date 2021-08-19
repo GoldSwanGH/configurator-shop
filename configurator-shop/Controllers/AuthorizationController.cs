@@ -57,7 +57,6 @@ namespace configurator_shop.Controllers
         [AnonymousOnlyFilter]
         public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
         {
-
             if (ModelState.IsValid)
             {
                 User user = registerViewModel.ToUser();
@@ -307,8 +306,11 @@ namespace configurator_shop.Controllers
             User user;
             
             user = _dbContext.Users.FirstOrDefault(u => u.Email == User.Identity.Name);
+            var model = ProfileViewModel.ToProfileViewModel(user);
+
+            var check = User;
             
-            return View(ProfileViewModel.ToProfileViewModel(user));
+            return View(model);
         }
         
         [HttpPost]
@@ -338,10 +340,10 @@ namespace configurator_shop.Controllers
                         string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images", "users");
                         string filePath = Path.Combine(uploadsFolder, user.Id + ".jpg");
 
-                        if (model.Image == null || model.Image.Length == 0 /*|| model.Image.ContentType == ".jpeg" Проверять тип файла? */)
+                        if (model.Image == null || model.Image.Length == 0 /*|| model.Image.ContentType != "jpeg" Проверять тип файла?*/ )
                         {
                             ModelState.AddModelError("", "Ошибка изображения");
-                            return View();
+                            return View(model);
                         }
                         
                         if (user.CustomImage)
@@ -358,8 +360,9 @@ namespace configurator_shop.Controllers
                             model.Image.CopyTo(memoryStream);
                             using (var img = Image.FromStream(memoryStream))
                             {
+                                memoryStream.SetLength(0);
                                 Image readyImage = _resizer.Resize(img, 200, 200);
-                                readyImage = _compresser.Compress(readyImage, 50L);
+                                readyImage = _compresser.Compress(readyImage, 50L, memoryStream);
                                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                                 {
                                     readyImage.Save(fileStream, ImageFormat.Jpeg);
@@ -373,11 +376,14 @@ namespace configurator_shop.Controllers
                 else
                 {
                     ModelState.AddModelError("", "Пользователь не найден");
-                    return View();
+                    return View(model);
                 }
             }
-
-            return View();
+            
+            User newUser = _dbContext.Users.FirstOrDefault(u => u.Email == User.Identity.Name);
+            model = ProfileViewModel.ToProfileViewModel(newUser);
+            
+            return View(model);
         }
         
         private async Task Authenticate(User user)
