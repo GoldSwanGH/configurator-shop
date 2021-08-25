@@ -5,7 +5,7 @@ using configurator_shop.Models.EntityFrameworkModels;
 
 namespace configurator_shop.Models.ViewModels
 {
-    public class HddViewModel : ImageViewModel
+    public class HddViewModel : LoadImageViewModel
     {
         public CategoryHdd Hdd { get; set; }
         

@@ -5,13 +5,13 @@ namespace configurator_shop.Models.ViewModels
 {
     public class CategoryHddViewModel
     {
-        public List<HddViewModel> Products { get; set; }
+        public List<CategoryHdd> Products { get; set; }
         
         public CategoryHdd Filters { get; set; }
 
         public CategoryHddViewModel()
         {
-            Products = new List<HddViewModel>();
+            Products = new List<CategoryHdd>();
 
             Filters = new CategoryHdd() {Product = new Product()};
         }

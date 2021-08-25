@@ -5,13 +5,13 @@ namespace configurator_shop.Models.ViewModels
 {
     public class CategoryCpuViewModel
     {
-        public List<CpuViewModel> Products { get; set; }
+        public List<CategoryCpu> Products { get; set; }
         
         public CategoryCpu Filters { get; set; }
 
         public CategoryCpuViewModel()
         {
-            Products = new List<CpuViewModel>();
+            Products = new List<CategoryCpu>();
 
             Filters = new CategoryCpu() {Product = new Product()};
         }

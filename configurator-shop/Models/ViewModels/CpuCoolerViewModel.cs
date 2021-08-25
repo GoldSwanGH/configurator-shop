@@ -5,7 +5,7 @@ using configurator_shop.Models.EntityFrameworkModels;
 
 namespace configurator_shop.Models.ViewModels
 {
-    public class CpuCoolerViewModel : ImageViewModel
+    public class CpuCoolerViewModel : LoadImageViewModel
     {
         public CategoryCpuCooler CpuCooler { get; set; }
         

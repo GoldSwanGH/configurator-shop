@@ -5,13 +5,13 @@ namespace configurator_shop.Models.ViewModels
 {
     public class CategoryCaseViewModel
     {
-        public List<CaseViewModel> Products { get; set; }
+        public List<CategoryCase> Products { get; set; }
         
         public CategoryCase Filters { get; set; }
 
         public CategoryCaseViewModel()
         {
-            Products = new List<CaseViewModel>();
+            Products = new List<CategoryCase>();
 
             Filters = new CategoryCase() {Product = new Product()};
         }

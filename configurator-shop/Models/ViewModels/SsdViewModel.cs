@@ -5,7 +5,7 @@ using configurator_shop.Models.EntityFrameworkModels;
 
 namespace configurator_shop.Models.ViewModels
 {
-    public class SsdViewModel : ImageViewModel
+    public class SsdViewModel : LoadImageViewModel
     {
         public CategorySsd Ssd { get; set; }
         

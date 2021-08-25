@@ -5,7 +5,7 @@ using configurator_shop.Models.EntityFrameworkModels;
 
 namespace configurator_shop.Models.ViewModels
 {
-    public class RamViewModel : ImageViewModel
+    public class RamViewModel : LoadImageViewModel
     {
         public CategoryRam Ram { get; set; }
         

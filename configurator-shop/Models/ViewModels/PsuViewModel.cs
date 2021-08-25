@@ -5,7 +5,7 @@ using configurator_shop.Models.EntityFrameworkModels;
 
 namespace configurator_shop.Models.ViewModels
 {
-    public class PsuViewModel : ImageViewModel
+    public class PsuViewModel : LoadImageViewModel
     {
         public CategoryPsu Psu { get; set; }
         

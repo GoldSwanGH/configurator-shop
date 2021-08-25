@@ -43,6 +43,8 @@ namespace configurator_shop.Controllers
         {
             var model = new CategoryCpuViewModel();
             
+            model.Products.AddRange(_dbContext.CategoryCpus.Include(c => c.Product).ToList());
+
             return View(model);
         }
         
@@ -109,7 +111,7 @@ namespace configurator_shop.Controllers
             return View(model);
         }
         
-        public IActionResult Product()
+        public IActionResult Product(int id)
         {
             return View();
         }

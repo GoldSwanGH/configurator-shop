@@ -5,7 +5,7 @@ using configurator_shop.Models.EntityFrameworkModels;
 
 namespace configurator_shop.Models.ViewModels
 {
-    public class CaseFanViewModel : ImageViewModel
+    public class CaseFanViewModel : LoadImageViewModel
     {
         public CategoryCaseFan CaseFan { get; set; }
         

@@ -5,7 +5,7 @@ using configurator_shop.Models.EntityFrameworkModels;
 
 namespace configurator_shop.Models.ViewModels
 {
-    public class GpuViewModel : ImageViewModel
+    public class GpuViewModel : LoadImageViewModel
     {
         public CategoryGpu Gpu { get; set; }
         

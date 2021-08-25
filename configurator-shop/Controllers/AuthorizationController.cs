@@ -309,8 +309,6 @@ namespace configurator_shop.Controllers
             
             user = _dbContext.Users.FirstOrDefault(u => u.Email == User.Identity.Name);
             var model = ProfileViewModel.ToProfileViewModel(user);
-
-            var check = User;
             
             return View(model);
         }

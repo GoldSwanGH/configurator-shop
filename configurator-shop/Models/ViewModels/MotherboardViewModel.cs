@@ -5,7 +5,7 @@ using configurator_shop.Models.EntityFrameworkModels;
 
 namespace configurator_shop.Models.ViewModels
 {
-    public class MotherboardViewModel : ImageViewModel
+    public class MotherboardViewModel : LoadImageViewModel
     {
         public CategoryMotherboard Motherboard { get; set; }
         

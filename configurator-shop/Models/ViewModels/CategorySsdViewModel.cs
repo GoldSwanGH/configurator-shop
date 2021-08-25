@@ -5,13 +5,13 @@ namespace configurator_shop.Models.ViewModels
 {
     public class CategorySsdViewModel
     {
-        public List<SsdViewModel> Products { get; set; }
+        public List<CategorySsd> Products { get; set; }
         
         public CategorySsd Filters { get; set; }
 
         public CategorySsdViewModel()
         {
-            Products = new List<SsdViewModel>();
+            Products = new List<CategorySsd>();
 
             Filters = new CategorySsd() {Product = new Product()};
         }

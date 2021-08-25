@@ -5,13 +5,13 @@ namespace configurator_shop.Models.ViewModels
 {
     public class CategoryGpuViewModel
     {
-        public List<GpuViewModel> Products { get; set; }
+        public List<CategoryGpu> Products { get; set; }
         
         public CategoryGpu Filters { get; set; }
 
         public CategoryGpuViewModel()
         {
-            Products = new List<GpuViewModel>();
+            Products = new List<CategoryGpu>();
 
             Filters = new CategoryGpu() {Product = new Product()};
         }

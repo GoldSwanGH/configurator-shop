@@ -5,13 +5,13 @@ namespace configurator_shop.Models.ViewModels
 {
     public class CategoryRamViewModel
     {
-        public List<RamViewModel> Products { get; set; }
+        public List<CategoryRam> Products { get; set; }
         
         public CategoryRam Filters { get; set; }
 
         public CategoryRamViewModel()
         {
-            Products = new List<RamViewModel>();
+            Products = new List<CategoryRam>();
 
             Filters = new CategoryRam() {Product = new Product()};
         }

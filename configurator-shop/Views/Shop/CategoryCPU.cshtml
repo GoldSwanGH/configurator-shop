@@ -1,4 +1,5 @@
-﻿@model configurator_shop.Models.ViewModels.CategoryCpuViewModel
+﻿@using configurator_shop.Models.ViewModels
+@model configurator_shop.Models.ViewModels.CategoryCpuViewModel
 
 @{
     ViewBag.Title = "Товары";
@@ -71,27 +72,30 @@
         </form>
     </div>
     <div class="col-12 col-md-9 overflow-scroll custom-scroll" style="overflow-x: hidden !important; min-height: 30vh; max-height: 75vh;">
-        <div class="row flex-lg-nowrap product mb-3 ms-2 border-bottom border-1 border-dark">
-            <img alt="Изображение товара" src="~/static-pic/pc-parts/motherboard.svg" class="col-2 col-lg-3 my-2 mx-auto mx-lg-0 mx-xl-0"/>
-            <div class="col-10 col-lg-9 d-flex flex-column justify-content-between mx-auto mx-md-0">
-                <div class="row mb-2">
-                    <div class="col-10">
-                        Компьютерная деталь, довольно длинное описание детали с техническими характеристиками.
+        @foreach(var product in Model.Products)
+        {
+            <div class="row flex-lg-nowrap product mb-3 ms-2 border-bottom border-1 border-dark">
+                <img alt="Изображение товара" src="@((product.Product.Image != null) ? @"~/images/products/" + product.Product.Image : @"/images/products/cpu.svg")" asp-append-version="true" class="col-2 col-lg-3 my-2 mx-auto mx-lg-0 mx-xl-0"/>
+                <div class="col-10 col-lg-9 d-flex flex-column justify-content-between mx-auto mx-md-0">
+                    <div class="row mb-2">
+                        <div class="col-10">
+                            @(product.Product.Name + " - " + @product.Product.Summary)
+                        </div>
+                        <div class="col-2 text-end">
+                            <span class="fs-4">@(product.Product.Price + "₽")</span>
+                        </div>
                     </div>
-                    <div class="col-2 text-end">
-                        <span class="fs-3">199$</span>
-                    </div>
-                </div>
-                <div class="row mb-2 justify-content-between flex-wrap">
-                    <div class="fit d-flex">
-                        <span class="mt-auto">Рейтинг: 5.0</span>
-                    </div>
-                    <div class="col-lg-4 col-xl-4 col-md-4 d-flex flex-row">
-                        <button class="btn btn-primary btn-sm w-100 fit me-3" type="submit">Купить</button>
-                        <a class="btn btn-primary btn-sm w-100 fit align-items-center" asp-area="" asp-controller="Shop" asp-action="Product">Детали</a>
+                    <div class="row mb-2 justify-content-between flex-wrap">
+                        <div class="fit d-flex">
+                            <span class="mt-auto">Рейтинг: 5.0</span>
+                        </div>
+                        <div class="col-lg-4 col-xl-4 col-md-4 d-flex flex-row">
+                            <button class="btn btn-primary btn-sm w-100 fit me-3" type="submit">Купить</button>
+                            <a class="btn btn-primary btn-sm w-100 fit align-items-center" asp-area="" asp-controller="Shop" asp-action="Product" asp-route-id="@product.Product.Id">Детали</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        }
     </div>
 </div>
