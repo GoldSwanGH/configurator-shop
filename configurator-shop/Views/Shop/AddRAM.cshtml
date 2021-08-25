@@ -1,0 +1,74 @@
+﻿@model configurator_shop.Models.ViewModels.RamViewModel
+
+@{
+    ViewBag.Title = "Добавить оперативную память";
+    Layout = "_Layout";
+}
+
+<h1 class="text-center text-wrap mt-5">Добавить оперативную память</h1>
+
+<div class="container my-5">
+    <form asp-controller="Shop" asp-action="AddRam" method="post" enctype="multipart/form-data">
+        <div class="row">
+            @Html.HiddenFor(m => m.Ram.Product.TypeId)
+            @Html.HiddenFor(m => m.Ram.Product.Type)
+            <div class="validation col-12 mb-3" asp-validation-summary="ModelOnly"></div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Ram.Product.Name" class="form-label"></label>
+                <input asp-for="Ram.Product.Name" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Ram.Product.Description" class="form-label"></label>
+                <input asp-for="Ram.Product.Description" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Ram.Product.Price" class="form-label"></label>
+                <input asp-for="Ram.Product.Price" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Ram.Manufacturer" class="form-label"></label>
+                <select asp-for="Ram.Manufacturer" class="form-control rounded-pill" asp-items="ViewBag.SpecManufacturers">
+                    <option value="@null" selected>Нет</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Ram.RamType" class="form-label"></label>
+                <select asp-for="Ram.RamType" class="form-control rounded-pill" asp-items="ViewBag.SpecRamTypes">
+                    <option value="@null" selected>Нет</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Ram.RamTechnology" class="form-label"></label>
+                <select asp-for="Ram.RamTechnology" class="form-control rounded-pill" asp-items="ViewBag.SpecRamTechnologies">
+                    <option value="@null" selected>Нет</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Ram.CapacityPerModule" class="form-label"></label>
+                <input asp-for="Ram.CapacityPerModule" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Ram.Modules" class="form-label"></label>
+                <input asp-for="Ram.Modules" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Ram.Frequency" class="form-label"></label>
+                <input asp-for="Ram.Frequency" class="form-control rounded-pill"/>
+            </div>
+            @if (Model.ImagePath != null)
+            {
+                <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-center align-items-center mb-3">
+                    <label for="productPic" class="form-label"></label>
+                    <img src="@Model.ImagePath" asp-append-version="true" id="productPic" alt="" style="height: 125px; width: 125px;"/>
+                </div>
+            }
+            <div class="col-12 col-lg-6 mb-3">
+                <label asp-for="Image" class="form-label"></label>
+                <input asp-for="Image" class="form-control rounded-pill">
+            </div>
+            <div class="d-flex flex-column mb-3">
+                <input type="submit" class="btn btn-primary mx-auto mt-3" value="Сохранить"/>
+            </div>
+        </div>
+    </form>
+</div>

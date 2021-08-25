@@ -1,0 +1,186 @@
+﻿@model configurator_shop.Models.ViewModels.CaseViewModel
+
+@{
+    ViewBag.Title = "Добавить корпус";
+    Layout = "_Layout";
+}
+
+<h1 class="text-center text-wrap mt-5">Добавить корпус</h1>
+
+<div class="container my-5">
+    <form asp-controller="Shop" asp-action="AddCase" method="post" enctype="multipart/form-data">
+        <div class="row">
+            @Html.HiddenFor(m => m.Case.Product.TypeId)
+            @Html.HiddenFor(m => m.Case.Product.Type)
+            <div class="validation col-12 mb-3" asp-validation-summary="ModelOnly"></div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.Product.Name" class="form-label"></label>
+                <input asp-for="Case.Product.Name" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.Product.Description" class="form-label"></label>
+                <input asp-for="Case.Product.Description" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.Product.Price" class="form-label"></label>
+                <input asp-for="Case.Product.Price" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.Manufacturer" class="form-label"></label>
+                <select asp-for="Case.Manufacturer" class="form-control rounded-pill" asp-items="ViewBag.SpecManufacturers">
+                    <option value="@null" selected>Нет</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.FormFactor" class="form-label"></label>
+                <select asp-for="Case.FormFactor" class="form-control rounded-pill" asp-items="ViewBag.SpecCaseFormFactors">
+                    <option value="@null" selected>Нет</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.MotherboardFormFactor" class="form-label"></label>
+                <select asp-for="Case.MotherboardFormFactor" class="form-control rounded-pill" asp-items="ViewBag.SpecMotherboardFormFactors">
+                    <option value="@null" selected>Нет</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.GpuMaxLength" class="form-label"></label>
+                <input asp-for="Case.GpuMaxLength" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.CpuCoolerHeight" class="form-label"></label>
+                <input asp-for="Case.CpuCoolerHeight" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.ExBays25Internal" class="form-label"></label>
+                <input asp-for="Case.ExBays25Internal" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.ExBays35Internal" class="form-label"></label>
+                <input asp-for="Case.ExBays35Internal" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.ExBays35External" class="form-label"></label>
+                <input asp-for="Case.ExBays35External" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.ExBays525External" class="form-label"></label>
+                <input asp-for="Case.ExBays525External" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.Fan200Installed" class="form-label"></label>
+                <input asp-for="Case.Fan200Installed" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.Fan200Possible" class="form-label"></label>
+                <input asp-for="Case.Fan200Possible" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.Fan140Installed" class="form-label"></label>
+                <input asp-for="Case.Fan140Installed" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.Fan140Possible" class="form-label"></label>
+                <input asp-for="Case.Fan140Possible" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.Fan120Installed" class="form-label"></label>
+                <input asp-for="Case.Fan120Installed" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.Fan120Possible" class="form-label"></label>
+                <input asp-for="Case.Fan120Possible" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.Fan92Installed" class="form-label"></label>
+                <input asp-for="Case.Fan92Installed" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.Fan92Possible" class="form-label"></label>
+                <input asp-for="Case.Fan92Possible" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.Fan80Installed" class="form-label"></label>
+                <input asp-for="Case.Fan80Installed" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.Fan80Possible" class="form-label"></label>
+                <input asp-for="Case.Fan80Possible" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.Thunderbolt" class="form-label"></label>
+                <input asp-for="Case.Thunderbolt" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.UsbTypeC" class="form-label"></label>
+                <input asp-for="Case.UsbTypeC" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.Usb31" class="form-label"></label>
+                <input asp-for="Case.Usb31" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.Usb30" class="form-label"></label>
+                <input asp-for="Case.Usb30" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.Usb20" class="form-label"></label>
+                <input asp-for="Case.Usb20" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.ESata" class="form-label"></label>
+                <input asp-for="Case.ESata" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.Firewire" class="form-label"></label>
+                <input asp-for="Case.Firewire" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.Sound" class="form-label"></label>
+                <input asp-for="Case.Sound" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.Mic" class="form-label"></label>
+                <input asp-for="Case.Mic" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3 d-flex align-items-center">
+                <label asp-for="Case.Window" class="form-check-label"></label>
+                <input asp-for="Case.Window" class="form-check-input"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.Material" class="form-label"></label>
+                <select asp-for="Case.Material" class="form-control rounded-pill" asp-items="ViewBag.SpecCaseMaterials">
+                    <option value="@null" selected>Нет</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-4 mb-3 d-flex align-items-center">
+                <label asp-for="Case.PsuInstalled" class="form-check-label"></label>
+                <input asp-for="Case.PsuInstalled" class="form-check-input"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.PsuPower" class="form-label"></label>
+                <input asp-for="Case.PsuPower" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Case.Color" class="form-label"></label>
+                <select asp-for="Case.Color" class="form-control rounded-pill" asp-items="ViewBag.SpecColors">
+                    <option value="@null" selected>Нет</option>
+                </select>
+            </div>
+            @if (Model.ImagePath != null)
+            {
+                <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-center align-items-center mb-3">
+                    <label for="productPic" class="form-label"></label>
+                    <img src="@Model.ImagePath" asp-append-version="true" id="productPic" alt="" style="height: 125px; width: 125px;"/>
+                </div>
+            }
+            <div class="col-12 col-lg-6 mb-3">
+                <label asp-for="Image" class="form-label"></label>
+                <input asp-for="Image" class="form-control rounded-pill">
+            </div>
+            <div class="d-flex flex-column mb-3">
+                <input type="submit" class="btn btn-primary mx-auto mt-3" value="Сохранить"/>
+            </div>
+        </div>
+    </form>
+</div>

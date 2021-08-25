@@ -1,0 +1,74 @@
+﻿@model configurator_shop.Models.ViewModels.HddViewModel
+
+@{
+    ViewBag.Title = "Добавить жесткий диск";
+    Layout = "_Layout";
+}
+
+<h1 class="text-center text-wrap mt-5">Добавить жесткий диск</h1>
+
+<div class="container my-5">
+    <form asp-controller="Shop" asp-action="AddHdd" method="post" enctype="multipart/form-data">
+        <div class="row">
+            @Html.HiddenFor(m => m.Hdd.Product.TypeId)
+            @Html.HiddenFor(m => m.Hdd.Product.Type)
+            <div class="validation col-12 mb-3" asp-validation-summary="ModelOnly"></div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Hdd.Product.Name" class="form-label"></label>
+                <input asp-for="Hdd.Product.Name" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Hdd.Product.Description" class="form-label"></label>
+                <input asp-for="Hdd.Product.Description" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Hdd.Product.Price" class="form-label"></label>
+                <input asp-for="Hdd.Product.Price" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Hdd.Manufacturer" class="form-label"></label>
+                <select asp-for="Hdd.Manufacturer" class="form-control rounded-pill" asp-items="ViewBag.SpecManufacturers">
+                    <option value="@null" selected>Нет</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Hdd.FormFactor" class="form-label"></label>
+                <select asp-for="Hdd.FormFactor" class="form-control rounded-pill" asp-items="ViewBag.SpecHddFormFactors">
+                    <option value="@null" selected>Нет</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Hdd.Interface" class="form-label"></label>
+                <select asp-for="Hdd.Interface" class="form-control rounded-pill" asp-items="ViewBag.SpecHddInterfaces">
+                    <option value="@null" selected>Нет</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Hdd.SpindleSpeed" class="form-label"></label>
+                <input asp-for="Hdd.SpindleSpeed" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Hdd.Capacity" class="form-label"></label>
+                <input asp-for="Hdd.Capacity" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Hdd.Cache" class="form-label"></label>
+                <input asp-for="Hdd.Cache" class="form-control rounded-pill"/>
+            </div>
+            @if (Model.ImagePath != null)
+            {
+                <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-center align-items-center mb-3">
+                    <label for="productPic" class="form-label"></label>
+                    <img src="@Model.ImagePath" asp-append-version="true" id="productPic" alt="" style="height: 125px; width: 125px;"/>
+                </div>
+            }
+            <div class="col-12 col-lg-6 mb-3">
+                <label asp-for="Image" class="form-label"></label>
+                <input asp-for="Image" class="form-control rounded-pill">
+            </div>
+            <div class="d-flex flex-column mb-3">
+                <input type="submit" class="btn btn-primary mx-auto mt-3" value="Сохранить"/>
+            </div>
+        </div>
+    </form>
+</div>

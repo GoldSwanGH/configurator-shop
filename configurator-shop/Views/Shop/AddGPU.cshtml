@@ -1,0 +1,126 @@
+﻿@model configurator_shop.Models.ViewModels.GpuViewModel
+
+@{
+    ViewBag.Title = "Добавить видеокарту";
+    Layout = "_Layout";
+}
+
+<h1 class="text-center text-wrap mt-5">Добавить видеокарту</h1>
+
+<div class="container my-5">
+    <form asp-controller="Shop" asp-action="AddGpu" method="post" enctype="multipart/form-data">
+        <div class="row">
+            @Html.HiddenFor(m => m.Gpu.Product.TypeId)
+            @Html.HiddenFor(m => m.Gpu.Product.Type)
+            <div class="validation col-12 mb-3" asp-validation-summary="ModelOnly"></div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Gpu.Product.Name" class="form-label"></label>
+                <input asp-for="Gpu.Product.Name" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Gpu.Product.Description" class="form-label"></label>
+                <input asp-for="Gpu.Product.Description" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Gpu.Product.Price" class="form-label"></label>
+                <input asp-for="Gpu.Product.Price" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Gpu.Manufacturer" class="form-label"></label>
+                <select asp-for="Gpu.Manufacturer" class="form-control rounded-pill" asp-items="ViewBag.SpecManufacturers">
+                    <option value="@null" selected>Нет</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Gpu.GpuManufacturer" class="form-label"></label>
+                <select asp-for="Gpu.GpuManufacturer" class="form-control rounded-pill" asp-items="ViewBag.SpecManufacturers">
+                    <option value="@null" selected>Нет</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Gpu.GpuChipset" class="form-label"></label>
+                <select asp-for="Gpu.GpuChipset" class="form-control rounded-pill" asp-items="ViewBag.SpecGpuChipsets">
+                    <option value="@null" selected>Нет</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Gpu.VramType" class="form-label"></label>
+                <select asp-for="Gpu.VramType" class="form-control rounded-pill" asp-items="ViewBag.SpecVramTypes">
+                    <option value="@null" selected>Нет</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Gpu.Vram" class="form-label"></label>
+                <input asp-for="Gpu.Vram" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Gpu.BaseFreq" class="form-label"></label>
+                <input asp-for="Gpu.BaseFreq" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Gpu.BoostFreq" class="form-label"></label>
+                <input asp-for="Gpu.BoostFreq" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Gpu.BusWidth" class="form-label"></label>
+                <input asp-for="Gpu.BusWidth" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Gpu.Connector" class="form-label"></label>
+                <select asp-for="Gpu.Connector" class="form-control rounded-pill" asp-items="ViewBag.SpecGpuConnectorTypes">
+                    <option value="@null" selected>Нет</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Gpu.Size" class="form-label"></label>
+                <input asp-for="Gpu.Size" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Gpu.Hdmi" class="form-label"></label>
+                <input asp-for="Gpu.Hdmi" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Gpu.DisplayPort" class="form-label"></label>
+                <input asp-for="Gpu.DisplayPort" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Gpu.MiniDisplayPort" class="form-label"></label>
+                <input asp-for="Gpu.MiniDisplayPort" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Gpu.Vga" class="form-label"></label>
+                <input asp-for="Gpu.Vga" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Gpu.DirectX" class="form-label"></label>
+                <select asp-for="Gpu.DirectX" class="form-control rounded-pill" asp-items="ViewBag.SpecDirectxTypes">
+                    <option value="@null" selected>Нет</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Gpu.GpuPinPowering" class="form-label"></label>
+                <select asp-for="Gpu.GpuPinPowering" class="form-control rounded-pill" asp-items="ViewBag.SpecGpuPinPowerings">
+                    <option value="@null" selected>Нет</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Gpu.RecommendedPower" class="form-label"></label>
+                <input asp-for="Gpu.RecommendedPower" class="form-control rounded-pill"/>
+            </div>
+            @if (Model.ImagePath != null)
+            {
+                <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-center align-items-center mb-3">
+                    <label for="productPic" class="form-label"></label>
+                    <img src="@Model.ImagePath" asp-append-version="true" id="productPic" alt="" style="height: 125px; width: 125px;"/>
+                </div>
+            }
+            <div class="col-12 col-lg-6 mb-3">
+                <label asp-for="Image" class="form-label"></label>
+                <input asp-for="Image" class="form-control rounded-pill">
+            </div>
+            <div class="d-flex flex-column mb-3">
+                <input type="submit" class="btn btn-primary mx-auto mt-3" value="Сохранить"/>
+            </div>
+        </div>
+    </form>
+</div>

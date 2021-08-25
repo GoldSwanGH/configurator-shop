@@ -1,0 +1,88 @@
+﻿@model configurator_shop.Models.ViewModels.SsdViewModel
+
+@{
+    ViewBag.Title = "Добавить SSD накопитель";
+    Layout = "_Layout";
+}
+
+<h1 class="text-center text-wrap mt-5">Добавить SSD накопитель</h1>
+
+<div class="container my-5">
+    <form asp-controller="Shop" asp-action="AddSsd" method="post" enctype="multipart/form-data">
+        <div class="row">
+            @Html.HiddenFor(m => m.Ssd.Product.TypeId)
+            @Html.HiddenFor(m => m.Ssd.Product.Type)
+            <div class="validation col-12 mb-3" asp-validation-summary="ModelOnly"></div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Ssd.Product.Name" class="form-label"></label>
+                <input asp-for="Ssd.Product.Name" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Ssd.Product.Description" class="form-label"></label>
+                <input asp-for="Ssd.Product.Description" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Ssd.Product.Price" class="form-label"></label>
+                <input asp-for="Ssd.Product.Price" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Ssd.Manufacturer" class="form-label"></label>
+                <select asp-for="Ssd.Manufacturer" class="form-control rounded-pill" asp-items="ViewBag.SpecManufacturers">
+                    <option value="@null" selected>Нет</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Ssd.FormFactor" class="form-label"></label>
+                <select asp-for="Ssd.FormFactor" class="form-control rounded-pill" asp-items="ViewBag.SpecSddFormFactors">
+                    <option value="@null" selected>Нет</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Ssd.Interface" class="form-label"></label>
+                <select asp-for="Ssd.Interface" class="form-control rounded-pill" asp-items="ViewBag.SpecSsdInterfaces">
+                    <option value="@null" selected>Нет</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Ssd.Capacity" class="form-label"></label>
+                <input asp-for="Ssd.Capacity" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Ssd.Technology" class="form-label"></label>
+                <select asp-for="Ssd.Technology" class="form-control rounded-pill" asp-items="ViewBag.SpecSsdTechnologies">
+                    <option value="@null" selected>Нет</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-4 mb-3 d-flex align-items-center">
+                <label asp-for="Ssd.Nvme" class="form-check-label"></label>
+                <input asp-for="Ssd.Nvme" class="form-check-input"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Ssd.ReadSpeed" class="form-label"></label>
+                <input asp-for="Ssd.ReadSpeed" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <label asp-for="Ssd.WriteSpeed" class="form-label"></label>
+                <input asp-for="Ssd.WriteSpeed" class="form-control rounded-pill"/>
+            </div>
+            <div class="col-12 col-md-4 mb-3 d-flex align-items-center">
+                <label asp-for="Ssd.HardwareEncryption" class="form-check-label"></label>
+                <input asp-for="Ssd.HardwareEncryption" class="form-check-input"/>
+            </div>
+            @if (Model.ImagePath != null)
+            {
+                <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-center align-items-center mb-3">
+                    <label for="productPic" class="form-label"></label>
+                    <img src="@Model.ImagePath" asp-append-version="true" id="productPic" alt="" style="height: 125px; width: 125px;"/>
+                </div>
+            }
+            <div class="col-12 col-lg-6 mb-3">
+                <label asp-for="Image" class="form-label"></label>
+                <input asp-for="Image" class="form-control rounded-pill">
+            </div>
+            <div class="d-flex flex-column mb-3">
+                <input type="submit" class="btn btn-primary mx-auto mt-3" value="Сохранить"/>
+            </div>
+        </div>
+    </form>
+</div>
