@@ -33,8 +33,9 @@ namespace configurator_shop.Controllers
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly ICompresser _compresser;
         private readonly IResizer _resizer;
+        private readonly IPictureProcessor _processor;
         
-        public AuthorizationController(ILogger<AuthorizationController> logger, ShopDbContext dbContext, ISmtpEmailSender emailSender, ITokenizer tokenizer, IConfiguration configuration, IWebHostEnvironment webHostEnvironment, ICompresser compresser, IResizer resizer)
+        public AuthorizationController(ILogger<AuthorizationController> logger, ShopDbContext dbContext, ISmtpEmailSender emailSender, ITokenizer tokenizer, IConfiguration configuration, IWebHostEnvironment webHostEnvironment, ICompresser compresser, IResizer resizer, IPictureProcessor processor)
         {
             _logger = logger;
             _dbContext = dbContext;
@@ -44,6 +45,7 @@ namespace configurator_shop.Controllers
             _webHostEnvironment = webHostEnvironment;
             _compresser = compresser;
             _resizer = resizer;
+            _processor = processor;
         }
 
         [HttpGet]
@@ -354,21 +356,8 @@ namespace configurator_shop.Controllers
                         {
                             user.CustomImage = true;
                         }
-
-                        using (var memoryStream = new MemoryStream())
-                        {
-                            model.Image.CopyTo(memoryStream);
-                            using (var img = Image.FromStream(memoryStream))
-                            {
-                                memoryStream.SetLength(0);
-                                Image readyImage = _resizer.Resize(img, 200, 200);
-                                readyImage = _compresser.Compress(readyImage, 50L, memoryStream);
-                                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                                {
-                                    readyImage.Save(fileStream, ImageFormat.Jpeg);
-                                }
-                            }
-                        }
+                        
+                        _processor.ProcessPicture(model.Image, filePath, _resizer, _compresser, 200);
                     }
 
                     _dbContext.SaveChanges();
