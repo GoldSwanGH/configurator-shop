@@ -27,6 +27,5 @@
     
     <ItemGroup>
       <Folder Include="Models\EntityFrameworkModels" />
-      <Folder Include="wwwroot\images\products" />
     </ItemGroup>
 </Project>

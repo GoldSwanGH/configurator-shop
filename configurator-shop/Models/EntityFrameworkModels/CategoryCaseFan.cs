@@ -11,7 +11,6 @@ namespace configurator_shop.Models.EntityFrameworkModels
         public int ProductId { get; set; }
         public int? Manufacturer { get; set; }
         public int? FanSize { get; set; }
-        public int? Height { get; set; }
         public int? Noise { get; set; }
         public int? Speed { get; set; }
 

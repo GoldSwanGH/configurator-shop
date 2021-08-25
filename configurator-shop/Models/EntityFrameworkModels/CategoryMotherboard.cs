@@ -22,19 +22,20 @@ namespace configurator_shop.Models.EntityFrameworkModels
         public int? Pciex1 { get; set; }
         public int? Pci { get; set; }
         public int? Sata3 { get; set; }
-        public bool? Sata3raid { get; set; }
+        public bool Sata3raid { get; set; }
         public int? Sata2 { get; set; }
-        public bool? Sata2raid { get; set; }
+        public bool Sata2raid { get; set; }
         public int? M2 { get; set; }
         public int? Thunderbolt { get; set; }
         public int? UsbTypeC { get; set; }
         public int? Usb31 { get; set; }
         public int? Usb30 { get; set; }
         public int? Usb20 { get; set; }
-        public bool? WiFi { get; set; }
-        public bool? Sli { get; set; }
-        public bool? Crossfire { get; set; }
+        public bool WiFi { get; set; }
+        public bool Sli { get; set; }
+        public bool Crossfire { get; set; }
         public int? CpuPinPowering { get; set; }
+        public int? RamType { get; set; }
 
         public virtual SpecMotherboardChipset ChipsetNavigation { get; set; }
         public virtual SpecCpuPinPowering CpuPinPoweringNavigation { get; set; }
@@ -43,6 +44,7 @@ namespace configurator_shop.Models.EntityFrameworkModels
         public virtual SpecPciex16version Pciex16versionNavigation { get; set; }
         public virtual Product Product { get; set; }
         public virtual SpecRamTechnology RamTechnologyNavigation { get; set; }
+        public virtual SpecRamType RamTypeNavigation { get; set; }
         public virtual SpecSocket SocketNavigation { get; set; }
     }
 }

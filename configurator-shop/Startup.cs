@@ -42,6 +42,8 @@ namespace configurator_shop
             services.AddTransient<ITokenizer, Sha256Tokenizer>();
             services.AddTransient<IResizer, ImageResizer>();
             services.AddTransient<ICompresser, JpegCompresser>();
+            services.AddTransient<IPictureProcessor, PictureProcessor>();
+            services.AddTransient<IValueDimensionApplier, ValueDimensionApplier>();
             
             services.AddControllersWithViews(options =>
                 options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));

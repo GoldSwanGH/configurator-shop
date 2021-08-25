@@ -12,8 +12,9 @@ namespace configurator_shop.Models.EntityFrameworkModels
         public int? Manufacturer { get; set; }
         public int? RamType { get; set; }
         public int? Modules { get; set; }
-        public int? Speed { get; set; }
+        public int? Frequency { get; set; }
         public int? RamTechnology { get; set; }
+        public int? CapacityPerModule { get; set; }
 
         public virtual SpecManufacturer ManufacturerNavigation { get; set; }
         public virtual Product Product { get; set; }

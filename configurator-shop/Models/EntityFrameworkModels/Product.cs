@@ -24,13 +24,12 @@ namespace configurator_shop.Models.EntityFrameworkModels
         }
 
         public int Id { get; set; }
-        public string Sku { get; set; }
         public string Name { get; set; }
         public int TypeId { get; set; }
-        public int Count { get; set; }
         public int Price { get; set; }
         public string Summary { get; set; }
         public string Description { get; set; }
+        public string Image { get; set; }
 
         public virtual ProductType Type { get; set; }
         public virtual ICollection<CategoryCaseFan> CategoryCaseFans { get; set; }

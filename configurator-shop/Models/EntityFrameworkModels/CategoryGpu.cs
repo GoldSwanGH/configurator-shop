@@ -24,6 +24,8 @@ namespace configurator_shop.Models.EntityFrameworkModels
         public int? DirectX { get; set; }
         public int? GpuPinPowering { get; set; }
         public int? RecommendedPower { get; set; }
+        public int? BaseFreq { get; set; }
+        public int? BoostFreq { get; set; }
 
         public virtual SpecGpuConnectorType ConnectorNavigation { get; set; }
         public virtual SpecDirectxType DirectXNavigation { get; set; }

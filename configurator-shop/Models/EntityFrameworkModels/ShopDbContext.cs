@@ -63,6 +63,10 @@ namespace configurator_shop.Models.EntityFrameworkModels
         public virtual DbSet<SpecVramType> SpecVramTypes { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }
+        public virtual DbSet<ViewCase> ViewCases { get; set; }
+        public virtual DbSet<ViewCaseFan> ViewCaseFans { get; set; }
+        public virtual DbSet<ViewCpu> ViewCpus { get; set; }
+        public virtual DbSet<ViewCpuCooler> ViewCpuCoolers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -347,6 +351,11 @@ namespace configurator_shop.Models.EntityFrameworkModels
                     .HasForeignKey(d => d.RamTechnology)
                     .HasConstraintName("FK_categoryMotherboards_specRamTechnology");
 
+                entity.HasOne(d => d.RamTypeNavigation)
+                    .WithMany(p => p.CategoryMotherboards)
+                    .HasForeignKey(d => d.RamType)
+                    .HasConstraintName("FK_categoryMotherboards_specRamTypes");
+
                 entity.HasOne(d => d.SocketNavigation)
                     .WithMany(p => p.CategoryMotherboards)
                     .HasForeignKey(d => d.Socket)
@@ -356,6 +365,12 @@ namespace configurator_shop.Models.EntityFrameworkModels
             modelBuilder.Entity<CategoryPsu>(entity =>
             {
                 entity.ToTable("categoryPSU");
+
+                entity.Property(e => e.Pciex2).HasColumnName("PCIex2");
+
+                entity.Property(e => e.Pciex24).HasColumnName("PCIex24");
+
+                entity.Property(e => e.Pciex4).HasColumnName("PCIex4");
 
                 entity.Property(e => e.Pciex6).HasColumnName("PCIex6");
 
@@ -514,27 +529,20 @@ namespace configurator_shop.Models.EntityFrameworkModels
 
             modelBuilder.Entity<Product>(entity =>
             {
-                entity.HasIndex(e => e.Sku, "UK_Products_SKU")
-                    .IsUnique();
+                entity.Property(e => e.Description).IsUnicode(false);
 
-                entity.Property(e => e.Description)
+                entity.Property(e => e.Image)
+                    .IsRequired()
+                    .HasMaxLength(100)
                     .IsUnicode(false)
-                    .HasColumnName("description");
+                    .HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Sku)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("SKU");
-
-                entity.Property(e => e.Summary)
-                    .IsUnicode(false)
-                    .HasColumnName("summary");
+                entity.Property(e => e.Summary).IsUnicode(false);
 
                 entity.HasOne(d => d.Type)
                     .WithMany(p => p.Products)
@@ -854,6 +862,144 @@ namespace configurator_shop.Models.EntityFrameworkModels
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<ViewCase>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("viewCases");
+
+                entity.Property(e => e.Color)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Description).IsUnicode(false);
+
+                entity.Property(e => e.ESata).HasColumnName("eSATA");
+
+                entity.Property(e => e.FormFactor)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Manufacturer)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Material)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.MotherboardFormFactor)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Summary).IsUnicode(false);
+            });
+
+            modelBuilder.Entity<ViewCaseFan>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("viewCaseFan");
+
+                entity.Property(e => e.Description).IsUnicode(false);
+
+                entity.Property(e => e.FanSize)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Manufacturer)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Summary).IsUnicode(false);
+            });
+
+            modelBuilder.Entity<ViewCpu>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("viewCPU");
+
+                entity.Property(e => e.Description).IsUnicode(false);
+
+                entity.Property(e => e.Family)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.GpuChipset)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Manufacturer)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Packaging)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.RamTechnology)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Series)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Socket)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Summary).IsUnicode(false);
+
+                entity.Property(e => e.Tdp).HasColumnName("TDP");
+            });
+
+            modelBuilder.Entity<ViewCpuCooler>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("viewCpuCooler");
+
+                entity.Property(e => e.CoolerType)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Description).IsUnicode(false);
+
+                entity.Property(e => e.Manufacturer)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Socket)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Summary).IsUnicode(false);
+
+                entity.Property(e => e.Tdp).HasColumnName("TDP");
             });
 
             OnModelCreatingPartial(modelBuilder);

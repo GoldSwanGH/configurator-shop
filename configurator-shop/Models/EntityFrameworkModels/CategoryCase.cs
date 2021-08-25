@@ -37,9 +37,9 @@ namespace configurator_shop.Models.EntityFrameworkModels
         public int? Firewire { get; set; }
         public int? Sound { get; set; }
         public int? Mic { get; set; }
-        public bool? Window { get; set; }
+        public bool Window { get; set; }
         public int? Material { get; set; }
-        public bool? PsuInstalled { get; set; }
+        public bool PsuInstalled { get; set; }
         public int? PsuPower { get; set; }
         public int? Color { get; set; }
 

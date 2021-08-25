@@ -14,16 +14,15 @@ namespace configurator_shop.Models.EntityFrameworkModels
         public int? Manufacturer { get; set; }
         public int? Series { get; set; }
         public int? Cores { get; set; }
+        public int? Threads { get; set; }
         public int? GpuChipset { get; set; }
-        public int? Year { get; set; }
         public int? RamTechnology { get; set; }
         public int? FreqBase { get; set; }
         public int? FreqBoost { get; set; }
         public int? TechProcess { get; set; }
         public int? Tdp { get; set; }
         public int? Packaging { get; set; }
-        public int? CoolerHeight { get; set; }
-        public bool? UnlockedMultiplier { get; set; }
+        public bool UnlockedMultiplier { get; set; }
 
         public virtual SpecCpuFamily FamilyNavigation { get; set; }
         public virtual SpecGpuChipset GpuChipsetNavigation { get; set; }
