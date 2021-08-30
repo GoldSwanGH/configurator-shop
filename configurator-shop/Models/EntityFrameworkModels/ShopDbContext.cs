@@ -67,6 +67,12 @@ namespace configurator_shop.Models.EntityFrameworkModels
         public virtual DbSet<ViewCaseFan> ViewCaseFans { get; set; }
         public virtual DbSet<ViewCpu> ViewCpus { get; set; }
         public virtual DbSet<ViewCpuCooler> ViewCpuCoolers { get; set; }
+        public virtual DbSet<ViewGpu> ViewGpus { get; set; }
+        public virtual DbSet<ViewHdd> ViewHdds { get; set; }
+        public virtual DbSet<ViewMotherboard> ViewMotherboards { get; set; }
+        public virtual DbSet<ViewPsu> ViewPsus { get; set; }
+        public virtual DbSet<ViewRam> ViewRams { get; set; }
+        public virtual DbSet<ViewSsd> ViewSsds { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -518,7 +524,13 @@ namespace configurator_shop.Models.EntityFrameworkModels
             {
                 entity.ToTable("OrderInfo");
 
+                entity.Property(e => e.Address).IsUnicode(false);
+
                 entity.Property(e => e.OrderDate).HasColumnType("date");
+
+                entity.Property(e => e.Token)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.OrderInfos)
@@ -882,6 +894,10 @@ namespace configurator_shop.Models.EntityFrameworkModels
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Image)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Manufacturer)
                     .HasMaxLength(100)
                     .IsUnicode(false);
@@ -895,7 +911,6 @@ namespace configurator_shop.Models.EntityFrameworkModels
                     .IsUnicode(false);
 
                 entity.Property(e => e.Name)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -914,12 +929,15 @@ namespace configurator_shop.Models.EntityFrameworkModels
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Image)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Manufacturer)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Name)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -942,12 +960,15 @@ namespace configurator_shop.Models.EntityFrameworkModels
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Image)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Manufacturer)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Name)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -984,12 +1005,15 @@ namespace configurator_shop.Models.EntityFrameworkModels
 
                 entity.Property(e => e.Description).IsUnicode(false);
 
+                entity.Property(e => e.Image)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Manufacturer)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Name)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -1000,6 +1024,271 @@ namespace configurator_shop.Models.EntityFrameworkModels
                 entity.Property(e => e.Summary).IsUnicode(false);
 
                 entity.Property(e => e.Tdp).HasColumnName("TDP");
+            });
+
+            modelBuilder.Entity<ViewGpu>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("viewGPU");
+
+                entity.Property(e => e.Connector)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Description).IsUnicode(false);
+
+                entity.Property(e => e.DirectX)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.GpuChipset)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.GpuManufacturer)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.GpuPinPowering)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Hdmi).HasColumnName("HDMI");
+
+                entity.Property(e => e.Image)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Manufacturer)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Summary).IsUnicode(false);
+
+                entity.Property(e => e.Vga).HasColumnName("VGA");
+
+                entity.Property(e => e.VramType)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<ViewHdd>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("viewHDD");
+
+                entity.Property(e => e.Description).IsUnicode(false);
+
+                entity.Property(e => e.FormFactor)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Image)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Interface)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Manufacturer)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Summary).IsUnicode(false);
+            });
+
+            modelBuilder.Entity<ViewMotherboard>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("viewMotherboards");
+
+                entity.Property(e => e.Chipset)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CpuPinPowering)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Description).IsUnicode(false);
+
+                entity.Property(e => e.FormFactor)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Image)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Manufacturer)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Pci).HasColumnName("PCI");
+
+                entity.Property(e => e.Pciex1).HasColumnName("PCIex1");
+
+                entity.Property(e => e.Pciex16).HasColumnName("PCIex16");
+
+                entity.Property(e => e.Pciex16version)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("PCIex16version");
+
+                entity.Property(e => e.Pciex4).HasColumnName("PCIex4");
+
+                entity.Property(e => e.RamTechnology)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.RamTypes)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Sata2).HasColumnName("SATA2");
+
+                entity.Property(e => e.Sata2raid).HasColumnName("SATA2RAID");
+
+                entity.Property(e => e.Sata3).HasColumnName("SATA3");
+
+                entity.Property(e => e.Sata3raid).HasColumnName("SATA3RAID");
+
+                entity.Property(e => e.Sli).HasColumnName("SLI");
+
+                entity.Property(e => e.Socket)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Summary).IsUnicode(false);
+            });
+
+            modelBuilder.Entity<ViewPsu>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("viewPSU");
+
+                entity.Property(e => e.Description).IsUnicode(false);
+
+                entity.Property(e => e.FormFactor)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Image)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Manufacturer)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Pciex2).HasColumnName("PCIex2");
+
+                entity.Property(e => e.Pciex24).HasColumnName("PCIex24");
+
+                entity.Property(e => e.Pciex4).HasColumnName("PCIex4");
+
+                entity.Property(e => e.Pciex6).HasColumnName("PCIex6");
+
+                entity.Property(e => e.Pciex8).HasColumnName("PCIex8");
+
+                entity.Property(e => e.Pfc).HasColumnName("PFC");
+
+                entity.Property(e => e.Plus)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Sata).HasColumnName("SATA");
+
+                entity.Property(e => e.Summary).IsUnicode(false);
+            });
+
+            modelBuilder.Entity<ViewRam>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("viewRAM");
+
+                entity.Property(e => e.Description).IsUnicode(false);
+
+                entity.Property(e => e.Image)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Manufacturer)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.RamTechnology)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.RamType)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Summary).IsUnicode(false);
+            });
+
+            modelBuilder.Entity<ViewSsd>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("viewSSD");
+
+                entity.Property(e => e.Description).IsUnicode(false);
+
+                entity.Property(e => e.Image)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Manufacturer)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Nvme).HasColumnName("NVMe");
+
+                entity.Property(e => e.SsdFormFactor)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.SsdInterface)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.SsdTechnology)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Summary).IsUnicode(false);
             });
 
             OnModelCreatingPartial(modelBuilder);

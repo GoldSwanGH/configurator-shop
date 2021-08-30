@@ -28,32 +28,6 @@ namespace configurator_shop.Models.ViewModels
         
         public string ImagePath { get; set; }
         
-        /*
-        public UserViewModel()
-        {
-            
-        }
-        
-        public UserViewModel(User user)
-        {
-            Id = user.Id;
-            Email = user.Email;
-            FirstName = user.FirstName;
-            LastName = user.LastName;
-            Tel = user.Tel;
-            CustomImage = user.CustomImage;
-
-            if (CustomImage)
-            {
-                ImagePath = @"~/images/users/" + Id + ".jpg";
-            }
-            else
-            {
-                ImagePath = @"~/images/users/user.svg";
-            }
-        }
-        */
-        
         public static UserViewModel ToUserViewModel(User user)
         {
             var model = new UserViewModel

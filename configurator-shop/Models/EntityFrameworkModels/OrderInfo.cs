@@ -14,7 +14,14 @@ namespace configurator_shop.Models.EntityFrameworkModels
 
         public int Id { get; set; }
         public int UserId { get; set; }
-        public DateTime OrderDate { get; set; }
+        public DateTime? OrderDate { get; set; }
+        public string Address { get; set; }
+        public bool Warranty { get; set; }
+        public bool Call { get; set; }
+        public bool Test { get; set; }
+        public bool FastDelivery { get; set; }
+        public int TotalPrice { get; set; }
+        public string Token { get; set; }
 
         public virtual User User { get; set; }
         public virtual ICollection<OrderCart> OrderCarts { get; set; }
