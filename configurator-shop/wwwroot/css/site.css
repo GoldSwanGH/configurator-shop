@@ -87,3 +87,8 @@ table td {
 .z-9 {
   z-index: 9000;
 }
+
+.badge {
+  bottom: -6px !important;
+  right: -6px !important;
+}

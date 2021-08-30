@@ -89,3 +89,7 @@ main .custom-scroll::-webkit-scrollbar-thumb, footer .custom-scroll::-webkit-scr
   text-overflow: ellipsis;
 }
 
+.active-select {
+ border-radius: 5px 5px 0 0 !important;
+}
+
