@@ -1,4 +1,4 @@
-﻿@model dynamic
+﻿@model configurator_shop.Models.ViewModels.ProductViewModel
 
 @{
     ViewBag.Title = "Товар";
@@ -6,16 +6,16 @@
 }
 
 <div class="row mt-3 align-items-center">
-    <img alt="Изображение компонента" src="~/static-pic/pc-parts/gpu.svg" class="col-12 col-md-4"/>
+    <img alt="Изображение компонента" src="@("~/images/products/" + Model.Product.Image)" asp-append-version="true" class="col-12 col-md-4"/>
     <div class="col-md-1"></div>
     <div class="col-12 col-md-7">
-        <h1>Название детали</h1>
-        <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        <h1>@Model.Product.Name</h1>
+        <p class="mt-2">@Model.Product.Summary</p>
         <p class="mt-2 fs-4">Рейтинг: 5.0</p>
         <div class="d-flex flex-wrap justify-content-between gap-5 mt-2 fs-4">
-            <div><button type="button" class="btn btn-lg btn-primary fw-bold">Купить</button></div>
+            <div><button id="@Model.Product.Id" type="button" class="btn btn-lg btn-primary fw-bold">Купить</button></div>
             <div class="w-50 d-flex justify-content-center align-items-center">
-                <span class="fs-1">199$</span>
+                <span class="fs-1">@(Model.Product.Price + "₽")</span>
             </div>
         </div>
     </div>
@@ -48,16 +48,21 @@
         <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne" data-bs-parent="#itemTabs">
             <div class="accordion-body">
                 <h3>Описание</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                <p>@Model.Product.Description</p>
             </div>
         </div>
         <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo" data-bs-parent="#itemTabs">
             <div class="accordion-body">
                 <h3>Характеристики</h3>
-                <div class="d-flex flex-row flex-nowrap mt-3">
-                    <span class="fit" style="font-weight: 600;">Характеристика</span>
-                    <div class="border-1 border-dark mb-1 w-100" style="border-bottom-style: dotted;"></div>
-                    <span class="fit">Значение</span>
+                <div class="container">
+                    @foreach (var spec in Model.Specs)
+                        {
+                            <div class="row mb-3">
+                                <span class="col-12 col-md-5 text-wrap text-start text-md-end" style="font-weight: 600;">@spec.Item1</span>
+                                <div class="col-md-2 border-1 border-dark mb-1" style="border-bottom-style: dotted;"></div>
+                                <span class="col-12 col-md-5 text-wrap text-start">@spec.Item2</span>
+                            </div>
+                        }
                 </div>
             </div>
         </div>

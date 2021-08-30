@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="~/css/site.css"/>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/js-cookie/dist/js.cookie.js"></script>
+    <script type="text/javascript" src="~/js/site.js" asp-append-version="true"></script>
 </head>
 <body class="bg-light text-dark d-flex flex-column h-100 custom-scroll">
 <header class="position-fixed w-100 z-8">
@@ -35,11 +36,12 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-sm-0 ms-md-3 ms-lg-5 gap-2 gap-md-0 mt-2 mt-md-0">
-                    <li class="nav-item mx-lg-2 mx-md-1 mx-sm-1">
+                    <li class="nav-item mx-lg-2 mx-md-1 mx-sm-1 position-relative">
                         <a id="cartButton" class="nav-link text-light btn btn-sm btn-primary" asp-area="" asp-controller="Order" asp-action="Cart" data-bs-container="body" data-bs-toggle="popover"
                            data-bs-placement="bottom" data-bs-content="Товар добавлен в корзину" data-bs-trigger="manual" data-bs-custom-class="z-9">
                             <i class="bi bi-bag"></i>
                         </a>
+                        <div id="cartBadge" hidden class="rounded-pill bg-light text-dark position-absolute badge fit text-center fs-sm"></div>
                     </li>
                     @if (User.Identity.IsAuthenticated)
                     {
@@ -76,9 +78,11 @@
         <div class="container text-center text-md-start mt-5">
             <div class="row mt-3">
                 <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4 d-none d-md-block">
-                    <form>
+                    <form asp-controller="Home" asp-action="WriteUsBack">
                         <h6 class="fw-bold mb-4"><i class="bi bi-chat-left-dots-fill me-3"></i>Обратная связь</h6>
-                        <textarea placeholder="Напишите нам!" class="form-control custom-scroll" aria-label="Textarea" style="height: 115px; resize: none;"></textarea>
+                        <input hidden type="text" name="controller" value="@ViewContext.RouteData.Values["Controller"]" />
+                        <input hidden type="text" name="action" value="@ViewContext.RouteData.Values["Action"]" />
+                        <textarea placeholder="Напишите нам!" name="text" class="form-control custom-scroll" aria-label="Textarea" style="height: 115px; resize: none;"></textarea>
                         <div class="d-flex justify-content-start align-items-center">
                             <button type="submit" class="btn btn-primary fw-bold mt-3">Отправить</button>
                         </div>

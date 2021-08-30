@@ -1,54 +1,71 @@
-﻿@model dynamic
+﻿@using configurator_shop.Models.ViewModels
+@using configurator_shop.Models.EntityFrameworkModels
+@model configurator_shop.Models.ViewModels.CartViewModel
 
 @{
     ViewBag.Title = "Корзина";
     Layout = "_Layout";
+
+    int totalPrice = 0;
 }
 
-@*<h1 class="text-center text-wrap mt-5">Ваша корзина пуста</h1>
 
-<h3 class="text-muted text-center text-wrap">Исправим?</h3>*@
+@if (Model.Cart.Count == 0)
+{
+<h1 class="text-center text-wrap mt-5">Ваша корзина пуста</h1>
 
+<h3 class="text-muted text-center text-wrap">Исправим?</h3>
+}
+else
+{
 <h1 class="text-center text-wrap mt-5">Ваша корзина</h1>
 
 <div class="container mt-3">
     <div class="row h-100 mb-5">
         <div class="col-12 col-md-9 mb-5 mb-md-0 border-end border-2 border-dark">
             <div class="overflow-scroll custom-scroll" style="overflow-x: hidden !important; min-height: 10vh; max-height: 75vh;">
-                <div class="row flex-lg-nowrap product mb-3 ms-2 border-bottom border-1 border-dark">
-                    <img alt="Изображение товара" src="~/static-pic/pc-parts/motherboard.svg" class="col-2 col-lg-3 my-2 mx-auto mx-lg-0 mx-xl-0"/>
-                    <div class="col-10 col-lg-9 d-flex flex-column justify-content-between">
-                        <div class="row mb-2">
-                            <div class="col-10">
-                                Компьютерная деталь, довольно длинное описание детали с техническими характеристиками.
+                @foreach (var product in Model.Cart)
+                {
+                    totalPrice += product.Item1.Price * product.Item2;
+                    <div class="row flex-lg-nowrap product mb-3 ms-2 border-bottom border-1 border-dark searchItem">
+                        <img alt="Изображение товара" src="@(@"~/images/products/" + product.Item1.Image)" asp-append-version="true" class="col-2 col-lg-3 my-2 mx-auto mx-lg-0 mx-xl-0"/>
+                        <div class="col-10 col-lg-9 d-flex flex-column justify-content-between mx-auto mx-md-0">
+                            <div class="row mb-2">
+                                <div class="col-9">
+                                    <span class="fw-semibold searchItemTitle">@product.Item1.Name</span>
+                                    <span> - @product.Item1.Summary</span>
+                                </div>
+                                <div class="col-3 text-end">
+                                    <span id="@product.Item1.Id" class="fs-4">@(product.Item1.Price)</span>₽
+                                </div>
                             </div>
-                            <div class="col-2 text-end">
-                                <span class="fs-3">199$</span>
-                            </div>
-                        </div>
-                        <div class="row mb-2 justify-content-between flex-wrap">
-                            <div class="fit d-flex">
-                                <span class="mt-auto">Рейтинг: 5.0</span>
-                            </div>
-                            <div class="fit d-flex">
-                                <span class="mt-auto">Количество: 1</span>
-                            </div>
-                            <div class="col-lg-2 col-xl-2 col-md-2 d-flex flex-row">
-                                <a class="btn btn-primary btn-sm w-100 fit align-self-end" asp-area="" asp-controller="Shop" asp-action="Product">Детали</a>
+                            <div class="row mb-2 justify-content-between flex-wrap align-items-center">
+                                <div class="col-12 col-md-3 d-flex align-items-center mb-3 mb-lg-0">
+                                    <span class="d-inline-block fit">Рейтинг: 5.0</span>
+                                </div>
+                                <div class="col-12 col-md-7 d-flex flex-row align-items-center justify-content-center mb-3 mb-lg-0">
+                                    <span class="d-inline-block">Количество: </span>
+                                    <input min="0" id="@product.Item1.Id" asp-for="@product.Item2" class="form-control rounded-pill mx-3 amount-input" style="width: 5em"/>
+                                </div>
+                                <div class="col-lg-2 col-xl-2 col-md-2 d-flex flex-row align-items-center mb-3 mb-lg-0">
+                                    <a class="btn btn-primary btn-sm mx-auto mx-lg-0 ms-lg-auto fit align-items-center" asp-area="" asp-controller="Shop" asp-action="Product" asp-route-id="@product.Item1.Id">Детали</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                }
             </div>
         </div>
         <div class="col-12 col-md-3 gx-0">
             <div class="my-5 d-flex flex-column justify-content-center align-items-center">
-                <h3 class="text-center text-wrap">Итого:   1236$</h3>
+                <h3 class="text-center text-wrap">Итого:   <span id="total-price">@(totalPrice)</span>₽</h3>
                 <div class="w-75">
-                    <button class="btn btn-outline-primary mt-3 w-100">Очистить</button>
+                    <a class="btn btn-outline-primary mt-3 w-100" asp-controller="Order" asp-action="ClearCart">Очистить</a>
+                    @*<button type="submit" form="" class="btn btn-primary mt-3 w-100">Сохранить изменения корзины</button>*@
                     <a class="btn btn-primary fw-bold mt-3 w-100" asp-controller="Order" asp-action="YourOrder">Заказать</a> 
                 </div>
             </div>
         </div>
     </div>
 </div>
+}

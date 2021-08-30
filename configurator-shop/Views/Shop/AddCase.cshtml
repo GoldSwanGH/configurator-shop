@@ -12,6 +12,7 @@
         <div class="row">
             @Html.HiddenFor(m => m.Case.Product.TypeId)
             @Html.HiddenFor(m => m.Case.Product.Type)
+            @Html.HiddenFor(m => m.Case.Product.Image)
             <div class="validation col-12 mb-3" asp-validation-summary="ModelOnly"></div>
             <div class="col-12 col-md-4 mb-3">
                 <label asp-for="Case.Product.Name" class="form-label"></label>

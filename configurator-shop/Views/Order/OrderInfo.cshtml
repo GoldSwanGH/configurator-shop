@@ -1,8 +1,10 @@
-﻿@model dynamic
+﻿@model configurator_shop.Models.ViewModels.OrderInfoViewModel
 
 @{
     ViewBag.Title = "Информация о заказе";
     Layout = "_Layout";
+    int i = 0;
+    int totalPrice = 0;
 }
 
 <h1 class="text-center text-wrap my-5">Ваш заказ оформлен</h1>
@@ -12,103 +14,52 @@
         <div class="col-12 col-md-9 mb-5 mb-md-0 border-end border-2 border-dark">
             <h3 class="mb-3">Детали заказа</h3>
             <h5>Заказчик:</h5>
-            <p class="text-wrap text-muted">Лебедев Владимир, телефон +7 (900) 999-22-11</p>
+            <p class="text-wrap text-muted">@(Model.UserModel.FirstName + (Model.UserModel.LastName ?? "")), телефон @Model.UserModel.Tel</p>
             <h5>Адрес доставки:</h5>
-            <p class="text-wrap text-muted">Санкт-Петербург, ул. Политехническая, дом 23, кв. 209</p>
-            <h5>Дополнительно:</h5>
-            <ul>
-                <li class="text-wrap text-muted">Звонок от курьера за час до доставки</li>
-                <li class="text-wrap text-muted">Дополнительная гарантия 1 год</li>
-            </ul>
+            <p class="text-wrap text-muted">@Model.Order.Address</p>
+            @if (Model.Order.Call || Model.Order.Test || Model.Order.Warranty || Model.Order.FastDelivery)
+            {
+                <h5>Дополнительно:</h5>
+                <ul>
+                @if (Model.Order.Call)
+                {
+                    <li>Звонок от курьера за час до доставки</li>
+                }
+                @if (Model.Order.Warranty)
+                {
+                    <li>Дополнительная гарантия 1 год</li>
+                }
+                @if (Model.Order.Test)
+                {
+                    <li>Тест всех товаров от наших специалистов</li>
+                }
+                @if (Model.Order.FastDelivery)
+                {
+                    <li>Быстрая доставка</li>
+                }
+                </ul>
+            }
         </div>
         <div class="col-12 col-md-3 gx-0">
             <div class="overflow-scroll custom-scroll" style="overflow-x: hidden !important; max-height: 35vh;">
-                <div class="border-bottom border-1 border-dark fs-sm ms-2 mb-2 d-flex">
-                    <div class="mx-2">
-                        <span>1</span>
+                @foreach (var product in Model.Cart)
+                {
+                    totalPrice += product.Product.Price * product.Amount;
+                    <div class="border-bottom border-1 border-dark fs-sm ms-2 mb-2 d-flex">
+                        <div class="mx-2">
+                            <span>@(++i)</span>
+                        </div>
+                        <div class="d-flex flex-column ms-2">
+                            <span class="mb-1">@(product.Product.Name + " - " + product.Product.Summary)</span>
+                            <span class="mb-1">@(product.Product.Price)₽ - @(product.Amount) шт.</span>
+                        </div>
                     </div>
-                    <div class="d-flex flex-column ms-2">
-                        <span class="mb-1">Компьютерная деталь, краткое описание детали</span>
-                        <span class="mb-1">79$ - 1 шт.</span>
-                    </div>
-                </div>
-                <div class="border-bottom border-1 border-dark fs-sm ms-2 mb-2 d-flex">
-                    <div class="mx-2">
-                        <span>2</span>
-                    </div>
-                    <div class="d-flex flex-column ms-2">
-                        <span class="mb-1">Компьютерная деталь, краткое описание детали</span>
-                        <span class="mb-1">79$ - 1 шт.</span>
-                    </div>
-                </div>
-                <div class="border-bottom border-1 border-dark fs-sm ms-2 mb-2 d-flex">
-                    <div class="mx-2">
-                        <span>3</span>
-                    </div>
-                    <div class="d-flex flex-column ms-2">
-                        <span class="mb-1">Компьютерная деталь, краткое описание детали</span>
-                        <span class="mb-1">79$ - 1 шт.</span>
-                    </div>
-                </div>
-                <div class="border-bottom border-1 border-dark fs-sm ms-2 mb-2 d-flex">
-                    <div class="mx-2">
-                        <span>4</span>
-                    </div>
-                    <div class="d-flex flex-column ms-2">
-                        <span class="mb-1">Компьютерная деталь, краткое описание детали</span>
-                        <span class="mb-1">79$ - 1 шт.</span>
-                    </div>
-                </div>
-                <div class="border-bottom border-1 border-dark fs-sm ms-2 mb-2 d-flex">
-                    <div class="mx-2">
-                        <span>4</span>
-                    </div>
-                    <div class="d-flex flex-column ms-2">
-                        <span class="mb-1">Компьютерная деталь, краткое описание детали</span>
-                        <span class="mb-1">79$ - 1 шт.</span>
-                    </div>
-                </div>
-                <div class="border-bottom border-1 border-dark fs-sm ms-2 mb-2 d-flex">
-                    <div class="mx-2">
-                        <span>4</span>
-                    </div>
-                    <div class="d-flex flex-column ms-2">
-                        <span class="mb-1">Компьютерная деталь, краткое описание детали</span>
-                        <span class="mb-1">79$ - 1 шт.</span>
-                    </div>
-                </div>
-                <div class="border-bottom border-1 border-dark fs-sm ms-2 mb-2 d-flex">
-                    <div class="mx-2">
-                        <span>4</span>
-                    </div>
-                    <div class="d-flex flex-column ms-2">
-                        <span class="mb-1">Компьютерная деталь, краткое описание детали</span>
-                        <span class="mb-1">79$ - 1 шт.</span>
-                    </div>
-                </div>
-                <div class="border-bottom border-1 border-dark fs-sm ms-2 mb-2 d-flex">
-                    <div class="mx-2">
-                        <span>4</span>
-                    </div>
-                    <div class="d-flex flex-column ms-2">
-                        <span class="mb-1">Компьютерная деталь, краткое описание детали</span>
-                        <span class="mb-1">79$ - 1 шт.</span>
-                    </div>
-                </div>
-                <div class="border-bottom border-1 border-dark fs-sm ms-2 mb-2 d-flex">
-                    <div class="mx-2">
-                        <span>4</span>
-                    </div>
-                    <div class="d-flex flex-column ms-2">
-                        <span class="mb-1">Компьютерная деталь, краткое описание детали</span>
-                        <span class="mb-1">79$ - 1 шт.</span>
-                    </div>
-                </div>
+                }
             </div>
 
             <div class="my-5 d-flex flex-column justify-content-center align-items-center">
-                <h3 class="text-center text-wrap">Итого:   1236$</h3>
-                <button type="submit" form="general-form" class="btn btn-primary fw-bold mt-3">Заказать</button>
+                <h3 class="text-center text-wrap">Итого:   @(totalPrice)₽</h3>
+                <a asp-controller="Order" asp-action="DownloadFile" asp-route-orderId="@Model.Order.Id" class="btn btn-primary w-75 fw-bold mt-3 fit text-wrap">Скачать файл с информацией по заказу</a>
             </div>
         </div>
     </div>
