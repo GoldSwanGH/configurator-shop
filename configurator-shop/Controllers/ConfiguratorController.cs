@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace configurator_shop.Controllers
@@ -23,6 +24,7 @@ namespace configurator_shop.Controllers
             return View();
         }
         
+        [Authorize]
         public IActionResult ChangeConfiguration()
         {
             return View();
