@@ -20,7 +20,7 @@ namespace configurator_shop.Services
         {
             MimeMessage message = new MimeMessage();
             
-            var from = new MailboxAddress("noreply", _configuration["SmtpConfiguration:SmtpUser"]);
+            var from = new MailboxAddress("Computer Parts", _configuration["SmtpConfiguration:SmtpUser"]);
             
             message.From.Add(from);
             message.To.Add(to);
